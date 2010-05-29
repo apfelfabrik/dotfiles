@@ -1,0 +1,106 @@
+set nocompatible          " We're running Vim, not Vi!
+set shell=/bin/bash\ -l
+set guioptions-=T " remove toolbar.
+set guioptions-=r " remove right toolbars.
+set guioptions-=R
+set guioptions-=l " remove left toolbars.
+set guioptions-=L
+
+runtime! macros/matchit.vim
+
+" Spaces **********************************************************************
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+"set title
+set foldmethod=indent
+set foldlevel=30
+set backspace=indent,eol,start
+set gfn=Monaco:h12.00
+
+
+" Indenting *******************************************************************
+set ai " Automatically set the indent of a new line (local to buffer)
+set si " smartindent (local to buffer)
+
+
+" Windows *********************************************************************
+set equalalways " Multiple windows, when created, are equal in size
+set splitbelow splitright
+
+"Vertical split then hop to new buffer
+:noremap ,v :vsp^M^W^W<cr>
+:noremap ,h :split^M^W^W<cr>
+
+
+" Cursor highlights ***********************************************************
+set cursorline
+"set cursorcolumn
+
+
+" Searching *******************************************************************
+set hlsearch " highlight search
+set incsearch " incremental search, search as you type
+set ignorecase " Ignore case when searching
+set smartcase " Ignore case when searching lowercase
+
+
+" Colors **********************************************************************
+"set t_Co=256 " 256 colors
+set background=dark
+syntax on " syntax highlighting
+colorscheme ir_black
+
+
+" Status Line *****************************************************************
+set showcmd
+set ruler " Show ruler
+"set ch=2 " Make command line two lines high
+match LongLineWarning '\%120v.*' " Error format when a line is longer than 120
+
+
+" Line Wrapping ***************************************************************
+set nowrap
+set linebreak " Wrap at word
+
+
+" File Stuff ******************************************************************
+filetype plugin indent on " Enable filetype-specific indenting and plugins
+" To show current filetype use: set filetype
+ 
+"autocmd FileType html :set filetype=xhtml 
+
+" Inser New Line **************************************************************
+map <S-Enter> O<ESC> " awesome, inserts new line without going into insert mode
+map <Enter> o<ESC>
+
+
+" Sessions ********************************************************************
+" Sets what is saved when you save a session
+set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
+
+
+" Misc ************************************************************************
+set backspace=indent,eol,start
+set number " Show line numbers
+set matchpairs+=<:>
+set vb t_vb= " Turn off bell, this could be more annoying, but I'm not sure how
+
+
+" Invisible characters ********************************************************
+set listchars=trail:.,tab:>-,eol:$
+set nolist
+:noremap ,i :set list!<CR> " Toggle invisible chars
+
+
+" Filetype changes ************************************************************
+au BufNewFile,BufRead *.jspf set filetype=jsp
+
+" Unbind the cursor keys in insert, normal and visual modes.
+for prefix in ['i', 'n', 'v']
+  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+    exe prefix . "noremap " . key . " <Nop>"
+  endfor
+endfor
+
