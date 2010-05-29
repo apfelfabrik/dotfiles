@@ -1,0 +1,2 @@
+My dotfiles. Symlink where appropriate, make sure to create a .secret with all
+environment settings that aren't public.
