@@ -8,16 +8,56 @@ set guioptions-=L
 
 runtime! macros/matchit.vim
 
-" Spaces **********************************************************************
-set tabstop=2
-set shiftwidth=2
-set expandtab
+" Tabstops ********************************************************************
+set ts=2 sts=2 sw=2 expandtab
+
+command! -nargs=* Stab call Stab()
+
+function! Stab()
+  let l:tabstop = 1 * input('set tabstop = softtabstop = shiftwidth = ')
+  if l:tabstop > 0
+    let &l:sts = l:tabstop
+    let &l:ts = l:tabstop
+    let &l:sw = l:tabstop
+  endif
+  call SummarizeTabs()
+endfunction
+ 
+function! SummarizeTabs()
+  try
+    echohl ModeMsg
+    echon 'tabstop='.&l:ts
+    echon ' shiftwidth='.&l:sw
+    echon ' softtabstop='.&l:sts
+    if &l:et
+      echon ' expandtab'
+    else
+      echon ' noexpandtab'
+    endif
+  finally
+    echohl None
+  endtry
+endfunction
+
+function! Preserve(command)
+  " Preparation: save last search, and cursor position.
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  " Do the business:
+  execute a:command
+  " Clean up: restore previous search history, and cursor position
+  let @/=_s
+  call cursor(l, c)
+endfunction
+nmap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
+nmap <leader>= :call Preserve("normal gg=G")<CR>
 
 "set title
 set foldmethod=indent
 set foldlevel=30
 set backspace=indent,eol,start
-set gfn=Monaco:h12.00
+set gfn=Monaco:h14.00
 
 
 " Indenting *******************************************************************
@@ -68,7 +108,7 @@ set linebreak " Wrap at word
 " File Stuff ******************************************************************
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 " To show current filetype use: set filetype
- 
+
 "autocmd FileType html :set filetype=xhtml 
 
 " Inser New Line **************************************************************
@@ -89,9 +129,9 @@ set vb t_vb= " Turn off bell, this could be more annoying, but I'm not sure how
 
 
 " Invisible characters ********************************************************
-set listchars=trail:.,tab:>-,eol:$
+set listchars=trail:.,tab:▸\ ,eol:¬
 set nolist
-:noremap ,i :set list!<CR> " Toggle invisible chars
+nmap <leader>l :set list!<CR>
 
 
 " Filetype changes ************************************************************
