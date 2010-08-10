@@ -129,7 +129,7 @@ set vb t_vb= " Turn off bell, this could be more annoying, but I'm not sure how
 
 
 " Invisible characters ********************************************************
-set listchars=trail:.,tab:▸\ ,eol:¬
+set listchars=trail:·,tab:▸\ ,eol:¬
 set nolist
 nmap <leader>l :set list!<CR>
 
