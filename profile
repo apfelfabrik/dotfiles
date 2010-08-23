@@ -1,4 +1,4 @@
-. .secrets
+. ~/.secrets
 
 # vi mode
 set -o vi
