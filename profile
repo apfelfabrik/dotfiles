@@ -1,40 +1,20 @@
-. ~/.secrets
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
 
-# vi mode
-set -o vi
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
 
-# MacPorts Installer addition: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
-
-# bash-completion
-export USER_BASH_COMPLETION_DIR=~/.bash_completion.d
-if [ -f /opt/local/etc/bash_completion ]; then
-    . /opt/local/etc/bash_completion
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
 fi
 
-# vim stuff
-EDITOR=vim; export EDITOR
-function gvim { /Applications/MacVim.app/Contents/MacOS/Vim -g $*; }
-alias mvim='gvim'
-
-# bash history fine-tuning
-export HISTCONTROL=erasedumps
-export HISTSIZE=10000
-shopt -s histappend
-
-# java stuff
-alias soy='export JAVA_HOME="/opt/soylatte16" && export PATH="/opt/soylatte16/bin:$PATH" && export PS1="SOY: $PS1"'
-
-# ruby & jruby stuff
-PATH=/opt/jruby/bin:$PATH
-PATH=/opt/glassfish/bin:$PATH
-PATH=/opt/local/lib/postgresql83/bin:$PATH
-export PATH
-
-export JRUBY_HOME=/opt/jruby
-for f in $JRUBY_HOME/bin/*; do
-  f=$(basename $f)
-  case $f in jruby*|jirb*|*.bat|*.rb|_*) continue ;; esac
-  eval "alias j$f='jruby -S $f'"
-done
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
