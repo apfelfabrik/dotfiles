@@ -48,19 +48,38 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+  # We have color support; assume it's compliant with Ecma-48
+  # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+  # a case would tend to support setf rather than setaf.)
+  color_prompt=yes
     else
-	color_prompt=
+  color_prompt=
     fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  export COLOR_NC='\e[0m' # No Color
+  export COLOR_WHITE='\e[1;37m'
+  export COLOR_BLACK='\e[0;30m'
+  export COLOR_BLUE='\e[0;34m'
+  export COLOR_LIGHT_BLUE='\e[1;34m'
+  export COLOR_GREEN='\e[0;32m'
+  export COLOR_LIGHT_GREEN='\e[1;32m'
+  export COLOR_CYAN='\e[0;36m'
+  export COLOR_LIGHT_CYAN='\e[1;36m'
+  export COLOR_RED='\e[0;31m'
+  export COLOR_LIGHT_RED='\e[1;31m'
+  export COLOR_PURPLE='\e[0;35m'
+  export COLOR_LIGHT_PURPLE='\e[1;35m'
+  export COLOR_BROWN='\e[0;33m'
+  export COLOR_YELLOW='\e[1;33m'
+  export COLOR_GRAY='\e[0;30m'
+  export COLOR_LIGHT_GRAY='\e[0;37m'
+  alias colorslist="set | egrep 'COLOR_\w*'"  # lists all the colors
+
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
