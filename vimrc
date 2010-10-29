@@ -65,6 +65,7 @@ set gfn=Monaco:h14.00
 " Indenting *******************************************************************
 set ai " Automatically set the indent of a new line (local to buffer)
 set si " smartindent (local to buffer)
+set formatprg=/opt/local/bin/par " par for better formatting of prose.
 
 
 " Windows *********************************************************************
