@@ -8,6 +8,8 @@ set guioptions-=L
 
 runtime! macros/matchit.vim
 
+let mapleader = "\\"
+
 " Tabstops ********************************************************************
 set ts=2 sts=2 sw=2 expandtab
 
@@ -144,3 +146,8 @@ for prefix in ['i', 'n', 'v']
   endfor
 endfor
 
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
+nmap <leader>v :tabedit $MYVIMRC<CR>
