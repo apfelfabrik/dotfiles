@@ -1,3 +1,5 @@
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 set nocompatible          " We're running Vim, not Vi!
 set shell=/bin/bash\ -l
 set guioptions-=T " remove toolbar.
