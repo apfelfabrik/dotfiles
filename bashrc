@@ -23,9 +23,30 @@ if [ -f /etc/bash_completion ]; then
 fi
 
 # vim stuff
+if [ -z "$MACVIM_APP_DIR" ]; then
+  for p in ${PATH//:/$'\n'}; do
+    if [ -x "$p/mvim" ]; then
+      MACVIM_APP_DIR="$p"; break
+    fi
+  done
+fi
+if [ -z "$MACVIM_APP_DIR" ]; then
+  # when no mvim was found, map mvim to gvim for convenience.
+  # this should probably include diff view and ex.
+  alias mvim="gvim"
+else
+  # create mvim toolset with aliases.
+  alias mvimdiff="$p/mvim"
+  alias mex="$p/mvim"
+  alias rmvim="$p/mvim"
+  # turn vim toolset into mvim toolset aliases.
+  alias vim="mvim"
+  alias vimdiff="mvimdiff"
+  alias view="mview"
+  alias ex="mex"
+  alias rvim="rmvim"
+fi
 EDITOR=vim; export EDITOR
-function gvim { /Applications/MacVim.app/Contents/MacOS/Vim -g $*; }
-alias mvim='gvim'
 
 # bash history
 export HISTCONTROL=ignoreboth
