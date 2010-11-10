@@ -8,6 +8,8 @@ set guioptions-=L
 
 runtime! macros/matchit.vim
 
+let mapleader = "\\"
+
 " Tabstops ********************************************************************
 set ts=2 sts=2 sw=2 expandtab
 
@@ -63,6 +65,7 @@ set gfn=Monaco:h14.00
 " Indenting *******************************************************************
 set ai " Automatically set the indent of a new line (local to buffer)
 set si " smartindent (local to buffer)
+set formatprg=/opt/local/bin/par " par for better formatting of prose.
 
 
 " Windows *********************************************************************
@@ -144,3 +147,8 @@ for prefix in ['i', 'n', 'v']
   endfor
 endfor
 
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
+
+nmap <leader>v :tabedit $MYVIMRC<CR>
