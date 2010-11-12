@@ -61,7 +61,7 @@ nmap <leader>= :call Preserve("normal gg=G")<CR>
 set foldmethod=indent
 set foldlevel=30
 set backspace=indent,eol,start
-set gfn=Monaco:h14.00
+set gfn=Monaco:h12.00
 
 
 " Indenting *******************************************************************

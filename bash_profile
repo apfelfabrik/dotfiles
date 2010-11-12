@@ -1,1 +1,1 @@
-. ~/.bashrc
+. $HOME/.bashrc
