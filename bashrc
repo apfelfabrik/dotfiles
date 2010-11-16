@@ -4,7 +4,7 @@
 [ -z "$PS1" ] && return
 
 # load any secrets.
-. ~/.secrets
+. $HOME/.secrets
 
 # vi mode
 set -o vi
@@ -62,20 +62,18 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
+# uncomment for a colored prompt
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-  # We have color support; assume it's compliant with Ecma-48
-  # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-  # a case would tend to support setf rather than setaf.)
-  color_prompt=yes
-    else
-  color_prompt=
-    fi
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+  else
+    color_prompt=
+  fi
 fi
 
 if [ "$color_prompt" = yes ]; then
@@ -96,6 +94,7 @@ if [ "$color_prompt" = yes ]; then
   export COLOR_YELLOW='\e[1;33m'
   export COLOR_GRAY='\e[0;30m'
   export COLOR_LIGHT_GRAY='\e[0;37m'
+  export CLICOLOR="YES"
   alias colorslist="set | egrep 'COLOR_\w*'"  # lists all the colors
 
   PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
@@ -113,6 +112,10 @@ xterm*|rxvt*)
     ;;
 esac
 
+# lists
+alias ls='ls -G'
+alias ll='ls -l'
+alias la='ls -la'
 
 # java stuff
 alias soy='export JAVA_HOME="/opt/soylatte16" && export PATH="/opt/soylatte16/bin:$PATH" && export PS1="SOY: $PS1"'
