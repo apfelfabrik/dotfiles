@@ -46,6 +46,9 @@ else
   alias ex="mex"
   alias rvim="rmvim"
 fi
+
+function gvim { /Applications/MacVim.app/Contents/MacOS/Vim -g $*; }
+
 EDITOR=vim; export EDITOR
 
 # bash history
