@@ -1,3 +1,5 @@
+[[ -s "/Users/martin/.rvm/scripts/rvm" ]] && source "/Users/martin/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+
 # ~/.profile: executed by the command interpreter for login shells.
 # This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
 # exists.
