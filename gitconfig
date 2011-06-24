@@ -5,3 +5,5 @@
 	user = apfelfabrik
 [color]
 	ui = true
+[core]
+	excludesfile = ~/.gitignore
