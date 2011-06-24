@@ -13,6 +13,9 @@ set -o vi
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
+# This loads RVM into a shell session.
+[[ -s "/Users/martin/.rvm/scripts/rvm" ]] && source "/Users/martin/.rvm/scripts/rvm"
+
 # bash-completion
 export USER_BASH_COMPLETION_DIR=~/.bash_completion.d
 if [ -f /opt/local/etc/bash_completion ]; then
