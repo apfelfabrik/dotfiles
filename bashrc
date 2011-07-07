@@ -3,56 +3,69 @@
 # return if not interactively.
 [ -z "$PS1" ] && return
 
-# load any secrets.
-. $HOME/.secrets
-
 # vi mode
 set -o vi
 
-# MacPorts Installer addition: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
+function path {
 
-# This loads RVM into a shell session.
-[[ -s "/Users/martin/.rvm/scripts/rvm" ]] && source "/Users/martin/.rvm/scripts/rvm"
+  # adding an appropriate PATH variable for use with MacPorts.
+  export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+}
 
-# bash-completion
-export USER_BASH_COMPLETION_DIR=~/.bash_completion.d
-if [ -f /opt/local/etc/bash_completion ]; then
-    . /opt/local/etc/bash_completion # darwin
-fi
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion # debian
-fi
+function environment {
 
-# vim stuff
-if [ -z "$MACVIM_APP_DIR" ]; then
-  for p in ${PATH//:/$'\n'}; do
-    if [ -x "$p/mvim" ]; then
-      MACVIM_APP_DIR="$p"; break
-    fi
-  done
-fi
-if [ -z "$MACVIM_APP_DIR" ]; then
-  # when no mvim was found, map mvim to gvim for convenience.
-  # this should probably include diff view and ex.
-  alias mvim="gvim"
-else
-  # create mvim toolset with aliases.
-  alias mvimdiff="$p/mvim"
-  alias mex="$p/mvim"
-  alias rmvim="$p/mvim"
-  # turn vim toolset into mvim toolset aliases.
-  alias vim="mvim"
-  alias vimdiff="mvimdiff"
-  alias view="mview"
-  alias ex="mex"
-  alias rvim="rmvim"
-fi
+  # load any secrets that shouldn't be shared on github.
+  source $HOME/.secrets
 
-function gvim { /Applications/MacVim.app/Contents/MacOS/Vim -g $*; }
+  # This loads RVM into a shell session.
+  [[ -s "/Users/martin/.rvm/scripts/rvm" ]] && source "/Users/martin/.rvm/scripts/rvm"
 
-EDITOR=vim; export EDITOR
+  # bash-completion
+  export USER_BASH_COMPLETION_DIR=~/.bash_completion.d
+  if [ -f /opt/local/etc/bash_completion ]; then
+      . /opt/local/etc/bash_completion # darwin
+  fi
+  if [ -f /etc/bash_completion ]; then
+      . /etc/bash_completion # debian
+  fi
+
+}
+
+function aliases {
+
+  # vim stuff
+  if [ -z "$MACVIM_APP_DIR" ]; then
+    for p in ${PATH//:/$'\n'}; do
+      if [ -x "$p/mvim" ]; then
+        MACVIM_APP_DIR="$p"; break
+      fi
+    done
+  fi
+  if [ -z "$MACVIM_APP_DIR" ]; then
+    # when no mvim was found, map mvim to gvim for convenience.
+    # this should probably include diff view and ex.
+    alias mvim="gvim"
+  else
+    # create mvim toolset with aliases.
+    alias mvimdiff="$p/mvim"
+    alias mex="$p/mvim"
+    alias rmvim="$p/mvim"
+    # turn vim toolset into mvim toolset aliases.
+    alias vim="mvim"
+    alias vimdiff="mvimdiff"
+    alias view="mview"
+    alias ex="mex"
+    alias rvim="rmvim"
+  fi
+
+  function gvim { /Applications/MacVim.app/Contents/MacOS/Vim -g $*; }
+
+  EDITOR=vim; export EDITOR
+}
+
+path
+environment
+aliases
 
 # bash history
 export HISTCONTROL=ignoreboth
@@ -103,7 +116,8 @@ if [ "$color_prompt" = yes ]; then
   export CLICOLOR="YES"
   alias colorslist="set | egrep 'COLOR_\w*'"  # lists all the colors
 
-  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  PS1="${debian_chroot:+($debian_chroot)}\[$COLOR_GREEN\]\u@\h\[$COLOR_NC\]:\[$COLOR_BLUE\]\w\[$COLOR_NC\]\$ "
+  # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
   PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
