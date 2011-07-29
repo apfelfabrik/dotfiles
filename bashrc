@@ -21,14 +21,18 @@ export COLOR_YELLOW='\[\e[1;33m\]'
 export COLOR_GRAY='\[\e[0;30m\]'
 export COLOR_LIGHT_GRAY='\[\e[0;37m\]'
 export CLICOLOR="YES"
-alias lise_colors="set | egrep '^COLOR_\w*'"  # lists all the colors
+alias list_colors="set | egrep '^COLOR_\w*'"  # lists all the colors
 
 function path {
 
-  # MacPorts
+  # general
+  PATH=/usr/local/bin:$PATH
+
+  # macports
   PATH=/opt/local/bin:$PATH
   PATH=/opt/local/sbin:$PATH
   PATH=/opt/local/lib/postgresql83/bin:$PATH
+  PATH=/opt/local/apache2/bin/:$PATH
 
   # other
   PATH=/opt/glassfish/bin:$PATH
@@ -88,9 +92,6 @@ function environment {
   alias ls='ls -G'
   alias ll='ls -l'
   alias la='ls -la'
-  
-  # java stuff
-  alias soy='export JAVA_HOME="/opt/soylatte16" && export PATH="/opt/soylatte16/bin:$PATH" && export PS1="SOY: $PS1"'
 }
 
 function bash_options {
@@ -117,9 +118,26 @@ function prompt {
   # append immediately after command.
   history -a
 
-  PS1="${debian_chroot:+($debian_chroot)}\[$COLOR_GREEN\]\u@\h\[$COLOR_NC\]:\[$COLOR_BLUE\]\w\[$COLOR_NC\]\$ "
-  
+  PS1="${debian_chroot:+($debian_chroot)}"
+
+  USER=$(whoami)
+  if [ -z $HOSTNAME ]; then
+    export HOSTNAME=`hostname -s`
+  fi
+
+  PS1="${PS1}${COLOR_GREEN}\u@\h${COLOR_NC}:${COLOR_BLUE}\w${COLOR_NC}\$ "
+
+  # Show last commands exit-code by smiley
+  # if [ $? = 0 ]; then
+  #   EXITCODE="${COLOR_GREEN_BOLD}✔ "
+  # else
+  #   EXITCODE="${COLOR_RED}✘ "
+  # fi
+  # EXITCODE="$EXITCODE${COLOR_NC}"
+
+  # PS1="$EXITCODE${PS1}"
 }
+
 path
 environment
 bash_options
