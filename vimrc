@@ -1,12 +1,8 @@
+set nocompatible
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
-set nocompatible          " We're running Vim, not Vi!
+
 set shell=/bin/bash\ -l
-set guioptions-=T " remove toolbar.
-set guioptions-=r " remove right toolbars.
-set guioptions-=R
-set guioptions-=l " remove left toolbars.
-set guioptions-=L
 
 runtime! macros/matchit.vim
 
@@ -91,9 +87,20 @@ set ignorecase " Ignore case when searching
 set smartcase " Ignore case when searching lowercase
 
 
-" Colors **********************************************************************
+" Colors / GUI options  *******************************************************
 "set t_Co=256 " 256 colors
 set background=dark
+if has('gui_running')
+  set guioptions-=T " remove toolbar.
+  set guioptions-=r " remove right toolbars.
+  set guioptions-=R
+  set guioptions-=l " remove left toolbars.
+  set guioptions-=L
+  set lines=40
+  set transparency=10
+endif
+
+
 syntax on " syntax highlighting
 colorscheme ir_black
 
