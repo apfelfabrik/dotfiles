@@ -35,6 +35,7 @@ function path {
   PATH=/opt/local/apache2/bin/:$PATH
 
   # other
+  PATH=/usr/texbin:$PATH
   PATH=/opt/glassfish/bin:$PATH
 
   export PATH
