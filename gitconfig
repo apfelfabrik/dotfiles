@@ -7,3 +7,10 @@
 	ui = true
 [core]
 	excludesfile = ~/.gitignore
+[alias]
+	st = status
+	co = checkout
+	up = pull
+	a = add
+	c = commit
+	b = branch
