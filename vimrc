@@ -97,7 +97,7 @@ if has('gui_running')
   set guioptions-=l " remove left toolbars.
   set guioptions-=L
   set lines=40
-  set transparency=10
+  set transparency=8
 endif
 
 
