@@ -56,7 +56,6 @@ nmap <leader>= :call Preserve("normal gg=G")<CR>
 "set title
 set foldmethod=indent
 set foldlevel=30
-set backspace=indent,eol,start
 set gfn=Monaco:h12.00
 
 
@@ -88,6 +87,7 @@ set smartcase " Ignore case when searching lowercase
 
 
 " Colors / GUI options  *******************************************************
+
 "set t_Co=256 " 256 colors
 set background=dark
 if has('gui_running')
@@ -100,8 +100,10 @@ if has('gui_running')
   set transparency=8
 endif
 
-syntax on " syntax highlighting
-set synmaxcol=120 " limit syntax highlighting to a number of columns per line.
+" syntax highlighting with a limit to *****************************************
+" the number of highlighted columns per line **********************************
+syntax on
+set synmaxcol=180
 colorscheme ir_black
 
 
