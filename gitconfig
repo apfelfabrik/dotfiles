@@ -9,6 +9,9 @@
 	excludesfile = ~/.gitignore
 [alias]
   tree = log --oneline --decorate --graph
+  me = config --replace-all user.name \"Martin Czuchra\"
+  finn = !git me && git config user.email `ruby -e \"puts 'ed.nnif@arhcuzc.m'.reverse\"`
+  hub = !git me && git config user.email `ruby -e \"puts 'moc.liamelgoog@arhcuzc.nitram'.reverse\"`
 	st = status
 	co = checkout
 	up = pull
