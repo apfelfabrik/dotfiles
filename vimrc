@@ -100,8 +100,8 @@ if has('gui_running')
   set transparency=8
 endif
 
-
 syntax on " syntax highlighting
+set synmaxcol=120 " limit syntax highlighting to a number of columns per line.
 colorscheme ir_black
 
 
