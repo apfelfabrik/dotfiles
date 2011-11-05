@@ -3,7 +3,6 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 set shell=/bin/bash\ -l
-
 runtime! macros/matchit.vim
 
 let mapleader = "\\"
@@ -22,7 +21,7 @@ function! Stab()
   endif
   call SummarizeTabs()
 endfunction
- 
+
 function! SummarizeTabs()
   try
     echohl ModeMsg
@@ -56,7 +55,7 @@ nmap <leader>= :call Preserve("normal gg=G")<CR>
 "set title
 set foldmethod=indent
 set foldlevel=30
-set gfn=Monaco:h12.00
+set gfn=Monaco:h14.00
 
 
 " Indenting *******************************************************************
@@ -73,18 +72,15 @@ set splitbelow splitright
 :noremap ,v :vsp^M^W^W<cr>
 :noremap ,h :split^M^W^W<cr>
 
-
 " Cursor highlights ***********************************************************
 set cursorline
 "set cursorcolumn
-
 
 " Searching *******************************************************************
 set hlsearch " highlight search
 set incsearch " incremental search, search as you type
 set ignorecase " Ignore case when searching
 set smartcase " Ignore case when searching lowercase
-
 
 " Colors / GUI options  *******************************************************
 
@@ -106,34 +102,36 @@ syntax on
 set synmaxcol=180
 colorscheme ir_black
 
-
 " Status Line *****************************************************************
 set showcmd
 set ruler " Show ruler
 "set ch=2 " Make command line two lines high
 match LongLineWarning '\%120v.*' " Error format when a line is longer than 120
 
-
 " Line Wrapping ***************************************************************
 set nowrap
 set linebreak " Wrap at word
 
-
-" File Stuff ******************************************************************
+" File Stuff / File types / Autocommands **************************************
 filetype plugin indent on " Enable filetype-specific indenting and plugins
-" To show current filetype use: set filetype
+if has("autocmd")
+  " au FileType html :set filetype=xhtml
+  " To show current filetype use: set filetype
+  au BufNewFile,BufRead *.jspf set filetype=jsp
+  au BufNewFile,BufRead *.json set ft=javascript
+  au bufwritepost .vimrc source $MYVIMRC
+endif
+nmap <leader>v :tabedit $MYVIMRC<CR>
 
-"autocmd FileType html :set filetype=xhtml 
+
 
 " Inser New Line **************************************************************
 map <S-Enter> O<ESC> " awesome, inserts new line without going into insert mode
 map <Enter> o<ESC>
 
-
 " Sessions ********************************************************************
 " Sets what is saved when you save a session
 set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
-
 
 " Misc ************************************************************************
 set backspace=indent,eol,start
@@ -141,25 +139,15 @@ set number " Show line numbers
 set matchpairs+=<:>
 set vb t_vb= " Turn off bell, this could be more annoying, but I'm not sure how
 
-
 " Invisible characters ********************************************************
 set listchars=trail:·,tab:▸\ ,eol:¬
 set nolist
 nmap <leader>l :set list!<CR>
 
-
-" Filetype changes ************************************************************
-au BufNewFile,BufRead *.jspf set filetype=jsp
-
 " Unbind the cursor keys in insert, normal and visual modes.
-for prefix in ['i', 'n', 'v']
-  for key in ['<Up>', '<Down>', '<Left>', '<Right>']
-    exe prefix . "noremap " . key . " <Nop>"
-  endfor
-endfor
+" for prefix in ['i', 'n', 'v']
+"   for key in ['<Up>', '<Down>', '<Left>', '<Right>']
+"     exe prefix . "noremap " . key . " <Nop>"
+"   endfor
+" endfor
 
-if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
-endif
-
-nmap <leader>v :tabedit $MYVIMRC<CR>
