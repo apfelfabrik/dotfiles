@@ -93,6 +93,10 @@ function environment {
   alias ls='ls -G'
   alias ll='ls -l'
   alias la='ls -la'
+
+  alias ss='./script/server'
+  alias sc='./script/console'
+  alias sr='./scritp/runner'
 }
 
 function bash_options {
