@@ -1,6 +1,5 @@
 set nocompatible
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+call pathogen#infect()
 
 set shell=/bin/bash\ -l
 runtime! macros/matchit.vim
