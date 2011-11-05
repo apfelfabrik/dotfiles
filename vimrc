@@ -84,7 +84,7 @@ set smartcase " Ignore case when searching lowercase
 " Colors / GUI options  *******************************************************
 
 "set t_Co=256 " 256 colors
-set background=dark
+set background=light
 if has('gui_running')
   set guioptions-=T " remove toolbar.
   set guioptions-=r " remove right toolbars.
@@ -99,13 +99,13 @@ endif
 " the number of highlighted columns per line **********************************
 syntax on
 set synmaxcol=180
-colorscheme ir_black
+colorscheme solarized
 
 " Status Line *****************************************************************
 set showcmd
 set ruler " Show ruler
 "set ch=2 " Make command line two lines high
-match LongLineWarning '\%120v.*' " Error format when a line is longer than 120
+"match LongLineWarning '\%120v.*' " Error format when a line is longer than 120
 
 " Line Wrapping ***************************************************************
 set nowrap
