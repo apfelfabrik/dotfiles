@@ -84,7 +84,7 @@ set smartcase " Ignore case when searching lowercase
 " Colors / GUI options  *******************************************************
 
 "set t_Co=256 " 256 colors
-set background=light
+
 if has('gui_running')
   set guioptions-=T " remove toolbar.
   set guioptions-=r " remove right toolbars.
@@ -92,13 +92,21 @@ if has('gui_running')
   set guioptions-=l " remove left toolbars.
   set guioptions-=L
   set lines=40
-  set transparency=8
+  set transparency=0
+  set background=light
+else
+  set background=dark
 endif
 
 " syntax highlighting with a limit to *****************************************
 " the number of highlighted columns per line **********************************
 syntax on
 set synmaxcol=180
+" solarized options, these were mentioned to be useful with vims that
+" were compiled with support for 256 colors.
+" let g:solarized_termcolors = 256 
+" let g:solarized_visibility = "high" 
+" let g:solarized_contrast = "high" 
 colorscheme solarized
 
 " Status Line *****************************************************************

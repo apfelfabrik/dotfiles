@@ -21,7 +21,7 @@ export COLOR_YELLOW='\[\e[1;33m\]'
 export COLOR_GRAY='\[\e[0;30m\]'
 export COLOR_LIGHT_GRAY='\[\e[0;37m\]'
 export CLICOLOR="YES"
-alias list_colors="set | egrep '^COLOR_\w*'"  # lists all the colors
+# alias list_colors="set | egrep '^COLOR_\w*'"  # lists all the colors
 
 function path {
 
@@ -130,17 +130,17 @@ function prompt {
     export HOSTNAME=`hostname -s`
   fi
 
-  PS1="${PS1}${COLOR_GREEN}\u@\h${COLOR_NC}:${COLOR_BLUE}\w${COLOR_NC}\$ "
+  PS1="${PS1}${COLOR_YELLOW}\u@\h${COLOR_NC}:${COLOR_BLUE}\w${COLOR_NC}\$ "
 
   # Show last commands exit-code by smiley
-  # if [ $? = 0 ]; then
-  #   EXITCODE="${COLOR_GREEN_BOLD}✔ "
-  # else
-  #   EXITCODE="${COLOR_RED}✘ "
-  # fi
-  # EXITCODE="$EXITCODE${COLOR_NC}"
+  if [ $? = 0 ]; then
+    EXITCODE="${COLOR_GREEN_BOLD}✔ "
+  else
+    EXITCODE="${COLOR_RED}✘ "
+  fi
+  EXITCODE="$EXITCODE${COLOR_NC}"
 
-  # PS1="$EXITCODE${PS1}"
+  PS1="$EXITCODE${PS1}"
 }
 
 path
