@@ -54,13 +54,6 @@ function environment {
   export HISTTIMEFORMAT='%F %T '
   export HISTSIZE=262144 # 0x40000
 
-  export JRUBY_HOME=/opt/jruby
-  for f in $JRUBY_HOME/bin/*; do
-    f=$(basename $f)
-    case $f in jruby*|jirb*|*.bat|*.rb|_*) continue ;; esac
-    eval "alias j$f='jruby -S $f'"
-  done
-
   # vim stuff
   if [[ -z "$MACVIM_APP_DIR" ]]; then
     for p in ${PATH//:/$'\n'}; do
@@ -94,6 +87,7 @@ function environment {
   alias ll='ls -l'
   alias la='ls -la'
 
+  # rails
   alias ss='./script/server'
   alias sc='./script/console'
   alias sr='./scritp/runner'
