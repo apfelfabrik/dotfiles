@@ -1,7 +1,7 @@
 set nocompatible
 call pathogen#infect()
 
-set shell=/bin/bash\ -l
+set shell=/opt/local/bin/bash\ -l
 runtime! macros/matchit.vim
 
 let mapleader = "\\"
@@ -54,7 +54,8 @@ nmap <leader>= :call Preserve("normal gg=G")<CR>
 "set title
 set foldmethod=indent
 set foldlevel=30
-set gfn=Monaco:h14.00
+set gfn=DejaVu\ Sans\ Mono:h14.00
+set linespace=1
 
 
 " Indenting *******************************************************************
@@ -91,7 +92,6 @@ if has('gui_running')
   set guioptions-=R
   set guioptions-=l " remove left toolbars.
   set guioptions-=L
-  set lines=40
   set transparency=0
   set background=light
 else
@@ -108,6 +108,13 @@ set synmaxcol=180
 " let g:solarized_visibility = "high" 
 " let g:solarized_contrast = "high" 
 colorscheme solarized
+
+
+" syntastics ******************************************************************
+" Enable status line indicator
+" set statusline+=%{SyntasticStatuslineFlag()}
+let g:syntastic_enable_signs=1
+
 
 " Status Line *****************************************************************
 set showcmd
