@@ -10,3 +10,6 @@
 [submodule "vim/bundle/solarized"]
 	path = vim/bundle/solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "vim/bundle/quickfixstatus"]
+	path = vim/bundle/quickfixstatus
+	url = git://github.com/dannyob/quickfixstatus.git
