@@ -90,7 +90,7 @@ function environment {
   # rails
   alias ss='./script/server'
   alias sc='./script/console'
-  alias sr='./scritp/runner'
+  alias sr='./script/runner'
 }
 
 function bash_options {
