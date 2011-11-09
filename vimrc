@@ -51,7 +51,6 @@ endfunction
 nmap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 nmap <leader>= :call Preserve("normal gg=G")<CR>
 
-"set title
 set foldmethod=indent
 set foldlevel=30
 set gfn=DejaVu\ Sans\ Mono:h14.00
@@ -74,18 +73,16 @@ set splitbelow splitright
 
 " Cursor highlights ***********************************************************
 set cursorline
+set scrolloff=2
 "set cursorcolumn
 
 " Searching *******************************************************************
-set hlsearch " highlight search
-set incsearch " incremental search, search as you type
-set ignorecase " Ignore case when searching
-set smartcase " Ignore case when searching lowercase
+set hlsearch   " highlight search
+set incsearch  " incremental search, search as you type
+set ignorecase " ignore case when searching
+set smartcase  " ignore case when searching lowercase
 
 " Colors / GUI options  *******************************************************
-
-"set t_Co=256 " 256 colors
-
 if has('gui_running')
   set guioptions-=T " remove toolbar.
   set guioptions-=r " remove right toolbars.
@@ -97,23 +94,24 @@ if has('gui_running')
 else
   set background=dark
 endif
-
-" syntax highlighting with a limit to *****************************************
-" the number of highlighted columns per line **********************************
-syntax on
-set synmaxcol=180
+colorscheme solarized
 " solarized options, these were mentioned to be useful with vims that
 " were compiled with support for 256 colors.
-" let g:solarized_termcolors = 256 
-" let g:solarized_visibility = "high" 
-" let g:solarized_contrast = "high" 
-colorscheme solarized
+" let g:solarized_termcolors = 256
+" let g:solarized_visibility = "high"
+" let g:solarized_contrast = "high"
 
 
-" syntastics ******************************************************************
+" Syntax highlighting *********************************************************
+syntax on
+set synmaxcol=180 " limit syntax-highlighted columns for long lines
+let g:syntastic_enable_signs=1
 " Enable status line indicator
 " set statusline+=%{SyntasticStatuslineFlag()}
-let g:syntastic_enable_signs=1
+if has('gui_running')
+  sign define SyntasticError text=╳ texthl=error
+  sign define SyntasticWarning text=→ texthl=todo
+endif
 
 
 " Status Line *****************************************************************
@@ -129,29 +127,35 @@ set linebreak " Wrap at word
 " File Stuff / File types / Autocommands **************************************
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 if has("autocmd")
-  " au FileType html :set filetype=xhtml
-  " To show current filetype use: set filetype
-  au BufNewFile,BufRead *.jspf set filetype=jsp
-  au BufNewFile,BufRead *.json set ft=javascript
-  au bufwritepost .vimrc source $MYVIMRC
+  aug vimrc
+    au!
+    " To show current filetype use: set filetype
+    au BufNewFile,BufRead *.jspf set filetype=jsp
+    au BufNewFile,BufRead *.json set ft=javascript
+    au bufwritepost .vimrc,vimrc source $MYVIMRC
+    " au FileType html :set filetype=xhtml
+  aug END
 endif
-nmap <leader>v :tabedit $MYVIMRC<CR>
 
+nmap <leader>v :tabedit $MYVIMRC<CR>
 
 
 " Inser New Line **************************************************************
 map <S-Enter> O<ESC> " awesome, inserts new line without going into insert mode
 map <Enter> o<ESC>
 
+
 " Sessions ********************************************************************
 " Sets what is saved when you save a session
 set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 
+
 " Misc ************************************************************************
+
 set backspace=indent,eol,start
 set number " Show line numbers
 set matchpairs+=<:>
-set vb t_vb= " Turn off bell, this could be more annoying, but I'm not sure how
+set vb t_vb= " Turn off bell
 
 " Invisible characters ********************************************************
 set listchars=trail:·,tab:▸\ ,eol:¬
