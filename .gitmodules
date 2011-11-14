@@ -13,3 +13,6 @@
 [submodule "vim/bundle/quickfixstatus"]
 	path = vim/bundle/quickfixstatus
 	url = git://github.com/dannyob/quickfixstatus.git
+[submodule "vim/bundle/rails"]
+	path = vim/bundle/rails
+	url = git://github.com/tpope/vim-rails.git
