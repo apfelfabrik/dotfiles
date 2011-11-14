@@ -116,7 +116,7 @@ function prompt {
 
   # append and refresh immediately after command.
   history -a
-  history -r
+  history -n
 
   PS1="${debian_chroot:+($debian_chroot)}"
 
