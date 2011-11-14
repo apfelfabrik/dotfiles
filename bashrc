@@ -81,7 +81,7 @@ function environment {
   function gvim { /Applications/MacVim.app/Contents/MacOS/Vim -g $*; }
 
   EDITOR=vim; export EDITOR
- 
+
   # lists
   alias ls='ls -G'
   alias ll='ls -l'
@@ -114,8 +114,9 @@ function bash_options {
 
 function prompt {
 
-  # append immediately after command.
+  # append and refresh immediately after command.
   history -a
+  history -r
 
   PS1="${debian_chroot:+($debian_chroot)}"
 
