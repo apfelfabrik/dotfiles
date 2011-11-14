@@ -147,6 +147,8 @@ if has("autocmd")
     au BufNewFile,BufRead *.jspf set filetype=jsp
     au BufNewFile,BufRead *.json set ft=javascript
     au bufwritepost .vimrc,vimrc source $MYVIMRC
+    " strip trailing white space on all lines
+    autocmd vimrc BufWritePre * :call Preserve("%s/\\s\\+$//e")
     " au FileType html :set filetype=xhtml
   aug END
 endif
