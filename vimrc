@@ -53,9 +53,22 @@ nmap <leader>= :call Preserve("normal gg=G")<CR>
 
 set foldmethod=indent
 set foldlevel=30
+
+command! -nargs=* SmallScreen call FontSize(12)
+command! -nargs=* BigScreen call FontSize(14)
+
+function! FontSize(size)
+  let &gfn = "DejaVu Sans Mono:h" . a:size
+endfunction
+
 set gfn=DejaVu\ Sans\ Mono:h14.00
 set linespace=1
 
+" this is for stuff that should happen only once.
+if !exists("vimrc_loaded")
+  let vimrc_loaded = 1
+  set lines=24 columns=80
+endif
 
 " Indenting *******************************************************************
 set ai " Automatically set the indent of a new line (local to buffer)
@@ -63,8 +76,9 @@ set si " smartindent (local to buffer)
 set formatprg=/opt/local/bin/par " par for better formatting of prose.
 
 
+
 " Windows *********************************************************************
-set equalalways " Multiple windows, when created, are equal in size
+"set equalalways " Multiple windows, when created, are equal in size
 set splitbelow splitright
 
 "Vertical split then hop to new buffer
