@@ -91,6 +91,9 @@ function environment {
   alias ss='./script/server'
   alias sc='./script/console'
   alias sr='./script/runner'
+
+  # other
+  alias find='find -L'
 }
 
 function bash_options {
