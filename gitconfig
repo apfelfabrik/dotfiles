@@ -1,22 +1,26 @@
 [user]
-	name = Martin Czuchra
-	email = martin.czuchra@googlemail.com
+  name = Martin Czuchra
+  email = martin.czuchra@googlemail.com
 [github]
-	user = apfelfabrik
+  user = apfelfabrik
 [color]
-	ui = true
+  ui = true
 [core]
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
 [alias]
   tree = log --oneline --decorate --graph
   me = config --replace-all user.name \"Martin Czuchra\"
   finn = !git me && git config user.email `ruby -e \"puts 'ed.nnif@arhcuzc.m'.reverse\"`
   hub = !git me && git config user.email `ruby -e \"puts 'moc.liamelgoog@arhcuzc.nitram'.reverse\"`
-	st = status
-	co = checkout
-	up = pull
-	a = add
-	c = commit
-	b = branch
+  st = status
+  co = checkout
+  up = pull
+  a = add
+  c = commit -v
+  b = branch
 [push]
-	default = tracking
+  default = tracking
+[apply]
+  whitespace = nowarn
+[http]
+  postBuffer = 52428800 # 50M.
