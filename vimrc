@@ -61,13 +61,12 @@ function! FontSize(size)
   let &gfn = "DejaVu Sans Mono:h" . a:size
 endfunction
 
-set gfn=DejaVu\ Sans\ Mono:h14.00
-set linespace=1
-
 " this is for stuff that should happen only once.
 if !exists("vimrc_loaded")
   let vimrc_loaded = 1
   set lines=24 columns=80
+  set gfn=DejaVu\ Sans\ Mono:h14.00
+  set linespace=1
 endif
 
 " Indenting *******************************************************************
@@ -144,6 +143,7 @@ if has("autocmd")
   aug vimrc
     au!
     " To show current filetype use: set filetype
+    au BufNewFile,BufRead config.ru,Gemfile,*.api.rsb set filetype=ruby
     au BufNewFile,BufRead *.jspf set filetype=jsp
     au BufNewFile,BufRead *.json set ft=javascript
     au bufwritepost .vimrc,vimrc source $MYVIMRC
@@ -154,10 +154,13 @@ if has("autocmd")
 endif
 
 nmap <leader>v :tabedit $MYVIMRC<CR>
+" *really* saves the file.
+cmap w!! w !sudo tee % >/dev/null
 
 
-" Inser New Line **************************************************************
-map <S-Enter> O<ESC> " awesome, inserts new line without going into insert mode
+" Insert New Line **************************************************************
+" awesome, inserts new line without going into insert mode
+map <S-Enter> O<ESC>
 map <Enter> o<ESC>
 
 
