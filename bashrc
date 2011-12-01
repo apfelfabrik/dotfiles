@@ -117,9 +117,11 @@ function bash_options {
 
 function prompt {
 
-  # append and refresh immediately after command.
+  # append immediately after each command.
   history -a
-  history -n
+  # this refreshes after each command,
+  # but turns out to be rather annoying.
+  # history -n
 
   PS1="${debian_chroot:+($debian_chroot)}"
 
