@@ -117,7 +117,7 @@ colorscheme solarized
 
 " Syntax highlighting *********************************************************
 syntax on
-set synmaxcol=180 " limit syntax-highlighted columns for long lines
+set synmaxcol=320 " limit syntax-highlighted columns for long lines
 let g:syntastic_enable_signs=1
 " Enable status line indicator
 " set statusline+=%{SyntasticStatuslineFlag()}
@@ -153,13 +153,11 @@ if has("autocmd")
   aug END
 endif
 
+" Time Savers *****************************************************************
+
 nmap <leader>v :tabedit $MYVIMRC<CR>
-" *really* saves the file.
 cmap w!! w !sudo tee % >/dev/null
-
-
-" Insert New Line **************************************************************
-" awesome, inserts new line without going into insert mode
+nnoremap ; :
 map <S-Enter> O<ESC>
 map <Enter> o<ESC>
 
