@@ -7,6 +7,7 @@
   ui = true
 [core]
   excludesfile = ~/.gitignore
+  compression = -1
 [alias]
   tree = log --oneline --decorate --graph
   me = config --replace-all user.name \"Martin Czuchra\"
