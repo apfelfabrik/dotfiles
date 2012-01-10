@@ -94,6 +94,7 @@ set hlsearch   " highlight search
 set incsearch  " incremental search, search as you type
 set ignorecase " ignore case when searching
 set smartcase  " ignore case when searching lowercase
+nmap <leader>h :noh<CR>
 
 " Colors / GUI options  *******************************************************
 if has('gui_running')
