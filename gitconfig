@@ -9,7 +9,8 @@
   excludesfile = ~/.gitignore
   compression = -1
 [alias]
-  tree = log --oneline --decorate --graph
+  browse = log --oneline --decorate --graph
+  tree = log --oneline --decorate --graph -n 20
   me = config --replace-all user.name \"Martin Czuchra\"
   finn = !git me && git config user.email `ruby -e \"puts 'ed.nnif@arhcuzc.m'.reverse\"`
   hub = !git me && git config user.email `ruby -e \"puts 'moc.liamelgoog@arhcuzc.nitram'.reverse\"`
