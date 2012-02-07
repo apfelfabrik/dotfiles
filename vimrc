@@ -85,8 +85,8 @@ set splitbelow splitright
 :noremap ,h :split^M^W^W<cr>
 
 " Cursor highlights ***********************************************************
-set cursorline
 set scrolloff=2
+" set cursorline " became too slow.
 "set cursorcolumn
 
 " Searching *******************************************************************
