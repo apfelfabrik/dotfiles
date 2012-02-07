@@ -139,6 +139,18 @@ set nowrap
 set linebreak " Wrap at word
 
 " File Stuff / File types / Autocommands **************************************
+
+function! JavaScriptFold()
+  setl foldmethod=syntax
+  setl foldlevelstart=1
+  syn region javaScriptFunctionFold  start="{" end="}" transparent fold
+  function! FoldText()
+      return substitute(getline(v:foldstart), '{.*', '{...}', '')
+  endfunction
+  setl foldtext=FoldText()
+endfunction
+
+
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 if has("autocmd")
   aug vimrc
@@ -151,6 +163,8 @@ if has("autocmd")
     " strip trailing white space on all lines
     autocmd vimrc BufWritePre * :call Preserve("%s/\\s\\+$//e")
     " au FileType html :set filetype=xhtml
+    " au FileType javascript call JavaScriptFold()
+    " au FileType javascript setl fen
   aug END
 endif
 
