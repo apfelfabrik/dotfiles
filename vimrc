@@ -74,8 +74,6 @@ set ai " Automatically set the indent of a new line (local to buffer)
 set si " smartindent (local to buffer)
 set formatprg=/opt/local/bin/par " par for better formatting of prose.
 
-
-
 " Windows *********************************************************************
 "set equalalways " Multiple windows, when created, are equal in size
 set splitbelow splitright
@@ -123,8 +121,10 @@ let g:syntastic_enable_signs=1
 " Enable status line indicator
 " set statusline+=%{SyntasticStatuslineFlag()}
 if has('gui_running')
-  sign define SyntasticError text=╳ texthl=error
-  sign define SyntasticWarning text=→ texthl=todo
+  " these somehow don't work unless vimrc is sourced twice. no idea why that is.
+  " might be a macvim issue.
+  "sign define SyntasticError text=╳ texthl=error
+  "sign define SyntasticWarning text=→ texthl=todo
 endif
 
 
