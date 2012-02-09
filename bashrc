@@ -94,6 +94,7 @@ function environment {
 
   # other
   alias find='find -L'
+  alias http='python -m SimpleHTTPServer'
 }
 
 function bash_options {
