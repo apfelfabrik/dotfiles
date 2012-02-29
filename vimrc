@@ -175,7 +175,8 @@ cmap w!! w !sudo tee % >/dev/null
 nnoremap ; :
 map <S-Enter> O<ESC>
 map <Enter> o<ESC>
-
+" expand %% in command mode to directory of current file
+cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
 " Sessions ********************************************************************
 " Sets what is saved when you save a session
