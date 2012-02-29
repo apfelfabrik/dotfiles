@@ -187,7 +187,7 @@ set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 
 set backspace=indent,eol,start
 set number " Show line numbers
-set matchpairs+=<:>
+"set matchpairs+=<:>
 set vb t_vb= " Turn off bell
 
 " Invisible characters ********************************************************
