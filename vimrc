@@ -103,6 +103,8 @@ if has('gui_running')
   set guioptions-=L
   set transparency=0
   set background=light
+  " grow to maximum horizontal width on entering fullscreen mode
+  set fuopt+=maxhorz
 else
   set background=dark
 endif
