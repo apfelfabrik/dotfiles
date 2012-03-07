@@ -63,6 +63,8 @@ endfunction
 
 " this is for stuff that should happen only once.
 if !exists("vimrc_loaded")
+  "let g:Powerline_symbols = 'fancy'
+  set laststatus=2
   let vimrc_loaded = 1
   set lines=24 columns=80
   set gfn=DejaVu\ Sans\ Mono:h14.00
