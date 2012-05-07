@@ -139,17 +139,16 @@ function prompt {
     export HOSTNAME=`hostname -s`
   fi
 
-  PS1="${PS1}${COLOR_YELLOW}\u@\h${COLOR_NC}:${COLOR_BLUE}\w${COLOR_NC}\$ "
-
-  # Show last commands exit-code by smiley
-  if [ $? = 0 ]; then
-    EXITCODE="${COLOR_GREEN_BOLD}✔ "
+  # SHOW RUBY VERSION
+  if (which rvm-prompt 2>&1 > /dev/null); then
+    RUBY="\$(rvm-prompt i v g)"
   else
-    EXITCODE="${COLOR_RED}✘ "
+    if (which rbenv 2>&1 > /dev/null); then
+      RUBY="\$(rbenv version-name)"
+    fi
   fi
-  EXITCODE="$EXITCODE${COLOR_NC}"
 
-  PS1="$EXITCODE${PS1}${COLOR_YELLOW}\u@\h${COLOR_NC}:${COLOR_BLUE}\w${COLOR_NC}\$ "
+  PS1="$EXITCODE${PS1}${COLOR_YELLOW}\u@\h(${RUBY})${COLOR_NC}:${COLOR_BLUE}\w${COLOR_NC}\$ "
 }
 
 path
