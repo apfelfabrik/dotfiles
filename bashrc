@@ -118,6 +118,14 @@ function bash_options {
 
 function prompt {
 
+  # Show last commands exit-code by smiley
+  if [ $? = 0 ]; then
+    EXITCODE="${COLOR_GREEN}✔ "
+  else
+    EXITCODE="${COLOR_RED}✘ "
+  fi
+  EXITCODE="$EXITCODE${COLOR_NC}"
+
   # append immediately after each command.
   history -a
   # this refreshes after each command,
@@ -141,7 +149,7 @@ function prompt {
   fi
   EXITCODE="$EXITCODE${COLOR_NC}"
 
-  PS1="$EXITCODE${PS1}"
+  PS1="$EXITCODE${PS1}${COLOR_YELLOW}\u@\h${COLOR_NC}:${COLOR_BLUE}\w${COLOR_NC}\$ "
 }
 
 path
