@@ -54,8 +54,10 @@ nmap <leader>= :call Preserve("normal gg=G")<CR>
 set foldmethod=indent
 set foldlevel=30
 
-command! -nargs=* SmallScreen call FontSize(12)
-command! -nargs=* BigScreen call FontSize(14)
+command! -nargs=* TinyFont call FontSize(10)
+command! -nargs=* SmallFont call FontSize(12)
+command! -nargs=* BigFont call FontSize(14)
+command! -nargs=* HugeFont call FontSize(36)
 
 function! FontSize(size)
   let &gfn = "DejaVu Sans Mono:h" . a:size
