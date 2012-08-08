@@ -156,3 +156,5 @@ environment
 bash_options
 
 PROMPT_COMMAND=prompt
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
