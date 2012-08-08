@@ -148,7 +148,7 @@ function prompt {
     fi
   fi
 
-  PS1="$EXITCODE${PS1}${COLOR_YELLOW}\u@\h(${RUBY})${COLOR_NC}:${COLOR_BLUE}\w${COLOR_NC}\$ "
+  PS1="$EXITCODE${PS1}${COLOR_YELLOW}\u@\h${COLOR_NC}:${COLOR_RED}${RUBY}${COLOR_NC}:${COLOR_BLUE}\w${COLOR_NC}\$ "
 }
 
 path
