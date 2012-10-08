@@ -72,8 +72,8 @@ if !exists("vimrc_loaded")
 
   let vimrc_loaded = 1
   set lines=24 columns=80
-  set gfn=DejaVu\ Sans\ Mono:h14.00
   set linespace=1
+  call FontSize(12)
 endif
 
 " Indenting *******************************************************************
@@ -109,18 +109,15 @@ if has('gui_running')
   set guioptions-=l " remove left toolbars.
   set guioptions-=L
   set transparency=0
-  set background=light
   " grow to maximum horizontal width on entering fullscreen mode
   set fuopt+=maxhorz
 else
-  set background=dark
 endif
+
+set background=light
+let g:solarized_visibility = "high"
+let g:solarized_contrast = "high"
 colorscheme solarized
-" solarized options, these were mentioned to be useful with vims that
-" were compiled with support for 256 colors.
-" let g:solarized_termcolors = 256
-" let g:solarized_visibility = "high"
-" let g:solarized_contrast = "high"
 
 
 " Syntax highlighting *********************************************************
