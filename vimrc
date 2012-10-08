@@ -71,7 +71,7 @@ if !exists("vimrc_loaded")
   set encoding=utf-8 " Necessary to show unicode glyphs
 
   let vimrc_loaded = 1
-  set lines=24 columns=80
+  "set lines=24 columns=80
   set linespace=1
   call FontSize(12)
 endif
