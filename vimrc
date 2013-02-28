@@ -162,7 +162,7 @@ if has("autocmd")
   aug vimrc
     au!
     " To show current filetype use: set filetype
-    au BufNewFile,BufRead config.ru,Gemfile,*.api.rsb set filetype=ruby
+    au BufNewFile,BufRead config.ru,Gemfile,Vagrantfile,*.api.rsb set filetype=ruby
     au BufNewFile,BufRead *.jspf set filetype=jsp
     au BufNewFile,BufRead *.json set ft=javascript
     au bufwritepost .vimrc,vimrc source $MYVIMRC
