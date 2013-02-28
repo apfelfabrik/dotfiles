@@ -1,7 +1,7 @@
 set nocompatible
 call pathogen#infect()
 
-set shell=/opt/local/bin/bash\ -l
+set shell=/bin/bash\ -l
 runtime! macros/matchit.vim
 
 let mapleader = "\\"
