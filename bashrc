@@ -26,6 +26,7 @@ export CLICOLOR="YES"
 function path {
 
   # general
+  PATH=/usr/local/sbin:$PATH
   PATH=/usr/local/bin:$PATH
 
   # macports
