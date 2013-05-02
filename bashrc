@@ -33,7 +33,7 @@ function path {
   PATH=/opt/local/bin:$PATH
   PATH=/opt/local/sbin:$PATH
   PATH=/opt/local/lib/postgresql83/bin:$PATH
-  PATH=/opt/local/apache2/bin/:$PATH
+  PATH=/opt/local/apache2/bin:$PATH
 
   # other
   PATH=/usr/texbin:$PATH
