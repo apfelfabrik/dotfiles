@@ -79,7 +79,7 @@ endif
 " Indenting *******************************************************************
 set ai " Automatically set the indent of a new line (local to buffer)
 set si " smartindent (local to buffer)
-set formatprg=/opt/local/bin/par " par for better formatting of prose.
+set formatprg=/usr/local/bin/par " par for better formatting of prose.
 
 " Windows *********************************************************************
 "set equalalways " Multiple windows, when created, are equal in size
