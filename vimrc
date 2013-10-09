@@ -124,14 +124,18 @@ colorscheme solarized
 " Syntax highlighting *********************************************************
 syntax on
 set synmaxcol=320 " limit syntax-highlighted columns for long lines
-let g:syntastic_enable_signs=1
+" let g:syntastic_enable_signs=1
 " Enable status line indicator
 " set statusline+=%{SyntasticStatuslineFlag()}
+
+" Use jshint (uses ~/.jshintrc)
+let g:syntastic_javascript_checkers = ['jshint']
+
 if has('gui_running')
   " these somehow don't work unless vimrc is sourced twice. no idea why that is.
   " might be a macvim issue.
-  "sign define SyntasticError text=╳ texthl=error
-  "sign define SyntasticWarning text=→ texthl=todo
+  " sign define SyntasticError text=╳ texthl=error
+  " sign define SyntasticWarning text=→ texthl=todo
 endif
 
 
