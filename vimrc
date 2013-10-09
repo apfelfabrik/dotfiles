@@ -114,7 +114,8 @@ if has('gui_running')
 else
 endif
 
-set background=light
+" set background=dark
+" set background=light
 let g:solarized_visibility = "high"
 let g:solarized_contrast = "high"
 colorscheme solarized
