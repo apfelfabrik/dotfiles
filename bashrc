@@ -88,10 +88,17 @@ function environment {
   alias ll='ls -l'
   alias la='ls -la'
 
-  # rails
+  # ruby & rails
   alias ss='./script/server'
   alias sc='./script/console'
   alias sr='./script/runner'
+  alias be='bundle exec'
+
+  export RUBY_HEAP_MIN_SLOTS=2000000
+  export RUBY_HEAP_SLOTS_INCREMENT=500000
+  export RUBY_HEAD_SLOTS_GROWTH_FACTOR=1
+  export RUBY_GC_MALLOC_LIMIT=70000000
+  export RUBY_HEAP_FREE_MIN=100000
 
   # other
   alias find='find -L'
