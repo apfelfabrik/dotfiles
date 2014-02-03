@@ -1,4 +1,5 @@
 set nocompatible
+
 call pathogen#infect()
 
 set shell=/bin/bash\ -l
@@ -48,6 +49,7 @@ function! Preserve(command)
   let @/=_s
   call cursor(l, c)
 endfunction
+
 nmap <leader>$ :call Preserve("%s/\\s\\+$//e")<CR>
 nmap <leader>= :call Preserve("normal gg=G")<CR>
 
@@ -167,7 +169,7 @@ if has("autocmd")
   aug vimrc
     au!
     " To show current filetype use: set filetype
-    au BufNewFile,BufRead config.ru,Gemfile,Vagrantfile,*.api.rsb set filetype=ruby
+    au BufNewFile,BufRead config.ru,Gemfile,Vagrantfile,*.rsb,*.rabl set filetype=ruby
     au BufNewFile,BufRead *.jspf set filetype=jsp
     au BufNewFile,BufRead *.json set ft=javascript
     au bufwritepost .vimrc,vimrc source $MYVIMRC
