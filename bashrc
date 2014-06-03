@@ -116,8 +116,9 @@ function bash_options {
 
   # bash-completion
   export USER_BASH_COMPLETION_DIR=~/.bash_completion.d
-  if [[ -f /usr/local/etc/bash_completion ]]; then
-      . /usr/local/etc/bash_completion # homebrew
+
+  if [[ -f /usr/local/share/bash_completion/bash_completion ]]; then
+      . /usr/local/share/bash_completion/bash_completion # homebrew
   fi
   if [[ -f /opt/local/etc/bash_completion ]]; then
       . /opt/local/etc/bash_completion # darwin/macports
