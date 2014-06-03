@@ -94,6 +94,7 @@ function environment {
   alias sr='./script/runner'
   alias be='bundle exec'
 
+  export RUBY_GC_HEAP_INIT_SLOTS=2000000
   export RUBY_HEAP_MIN_SLOTS=2000000
   export RUBY_HEAP_SLOTS_INCREMENT=500000
   export RUBY_HEAD_SLOTS_GROWTH_FACTOR=1
