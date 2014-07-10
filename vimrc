@@ -215,3 +215,4 @@ nmap <leader>l :set list!<CR>
 "   endfor
 " endfor
 
+let g:localvimrc_whitelist = "/Users/martin/Development/.*/\.lvimrc"
