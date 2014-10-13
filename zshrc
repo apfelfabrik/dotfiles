@@ -96,3 +96,13 @@ alias mvim="rtun mvim"
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 . `brew --prefix`/etc/profile.d/z.sh
+
+set_bundle_gemfile () {
+  if [[ -f Gemfile.local ]]; then
+    export BUNDLE_GEMFILE=Gemfile.local
+  else
+    unset BUNDLE_GEMFILE
+  fi
+}
+
+preexec_functions+=(set_bundle_gemfile)
