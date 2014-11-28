@@ -62,7 +62,7 @@ command! -nargs=* BigFont call FontSize(14)
 command! -nargs=* HugeFont call FontSize(36)
 
 function! FontSize(size)
-  let &gfn = "Source Code Pro Light:h" . a:size
+  let &gfn = "Source Code Pro:h" . a:size
 endfunction
 
 " this is for stuff that should happen only once.
