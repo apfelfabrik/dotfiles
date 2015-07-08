@@ -62,12 +62,11 @@ command! -nargs=* BigFont call FontSize(14)
 command! -nargs=* HugeFont call FontSize(36)
 
 function! FontSize(size)
-  let &gfn = "Source Code Pro:h" . a:size
+  let &gfn = "Source Code Pro for Powerline:h" . a:size
 endfunction
 
 " this is for stuff that should happen only once.
 if !exists("vimrc_loaded")
-  "let g:Powerline_symbols = 'fancy'
   set nocompatible   " Disable vi-compatibility
   set laststatus=2   " Always show the statusline
   set encoding=utf-8 " Necessary to show unicode glyphs
@@ -76,6 +75,10 @@ if !exists("vimrc_loaded")
   "set lines=24 columns=80
   set linespace=1
   call FontSize(12)
+
+  "source powerline.
+  source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+  set laststatus=2
 endif
 
 " Indenting *******************************************************************
