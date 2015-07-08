@@ -1,4 +1,4 @@
 .DS\_Store
-*.sw?
+*.sw[p|o]
 ~$*
 .ruby-gemset
