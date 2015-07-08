@@ -48,14 +48,12 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git ruby brew)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# PATH="/Users/martin/.rvm/gems/ruby-2.0.0-p451/bin:/Users/martin/.rvm/gems/ruby-2.0.0-p451@global/bin:/Users/martin/.rvm/rubies/ruby-2.0.0-p451/bin:$PATH"
-# PATH="/opt/glassfish/bin:/usr/texbin:/opt/local/apache2/bin:/opt/local/lib/postgresql83/bin:/opt/local/sbin:/opt/local/bin:$PATH"
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 PATH="/Users/martin/bin:$PATH"
 export PATH
@@ -93,8 +91,6 @@ alias mvim="rtun mvim"
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
 . `brew --prefix`/etc/profile.d/z.sh
 
 set_bundle_gemfile () {
@@ -104,5 +100,7 @@ set_bundle_gemfile () {
     unset BUNDLE_GEMFILE
   fi
 }
+
+eval "$(rbenv init -)"
 
 preexec_functions+=(set_bundle_gemfile)
