@@ -2,3 +2,4 @@
 *.sw[p|o]
 ~$*
 .ruby-gemset
+.agignore
