@@ -25,3 +25,5 @@
   whitespace = nowarn
 [http]
   postBuffer = 52428800 # 50M.
+[branch]
+  autosetuprebase = always
