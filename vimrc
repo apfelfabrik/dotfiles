@@ -7,6 +7,26 @@ runtime! macros/matchit.vim
 
 let mapleader = "\\"
 
+" Colors / GUI options  *******************************************************
+if has('gui_running')
+  set guioptions-=T " remove toolbar.
+  set guioptions-=r " remove right toolbars.
+  set guioptions-=R
+  set guioptions-=l " remove left toolbars.
+  set guioptions-=L
+  set transparency=0
+  " grow to maximum horizontal width on entering fullscreen mode
+  set fuopt+=maxhorz
+else
+endif
+
+" set background=dark
+" set background=light
+" let g:solarized_visibility = "high"
+" let g:solarized_contrast = "high"
+" colorscheme solarized
+colorscheme smyck
+
 " Tabstops ********************************************************************
 set ts=2 sts=2 sw=2 expandtab
 
@@ -73,8 +93,8 @@ if !exists("vimrc_loaded")
 
   let vimrc_loaded = 1
   "set lines=24 columns=80
-  set linespace=1
   call FontSize(12)
+  set linespace=1
 
   "source powerline.
   source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
@@ -114,26 +134,6 @@ if executable('ag')
   " Use ag in CtrlP for listing files. Lightning fast and respects   .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
-
-" Colors / GUI options  *******************************************************
-if has('gui_running')
-  set guioptions-=T " remove toolbar.
-  set guioptions-=r " remove right toolbars.
-  set guioptions-=R
-  set guioptions-=l " remove left toolbars.
-  set guioptions-=L
-  set transparency=0
-  " grow to maximum horizontal width on entering fullscreen mode
-  set fuopt+=maxhorz
-else
-endif
-
-" set background=dark
-" set background=light
-" let g:solarized_visibility = "high"
-" let g:solarized_contrast = "high"
-" colorscheme solarized
-colorscheme smyck
 
 
 " Syntax highlighting *********************************************************
