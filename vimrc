@@ -130,9 +130,10 @@ endif
 
 " set background=dark
 " set background=light
-let g:solarized_visibility = "high"
-let g:solarized_contrast = "high"
-colorscheme solarized
+" let g:solarized_visibility = "high"
+" let g:solarized_contrast = "high"
+" colorscheme solarized
+colorscheme smyck
 
 
 " Syntax highlighting *********************************************************
