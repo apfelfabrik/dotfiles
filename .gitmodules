@@ -43,3 +43,6 @@
 [submodule "Resources/powerline-fonts"]
 	path = Resources/powerline-fonts
 	url = git@github.com:powerline/fonts.git
+[submodule "vim/bundle/syntastic-local-eslint"]
+	path = vim/bundle/syntastic-local-eslint
+	url = git@github.com:mtscout6/syntastic-local-eslint.vim.git
