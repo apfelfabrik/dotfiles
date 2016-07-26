@@ -216,6 +216,7 @@ set backspace=indent,eol,start
 set number " Show line numbers
 "set matchpairs+=<:>
 set vb t_vb= " Turn off bell
+nmap <leader>p :set paste!<CR>
 
 " Invisible characters ********************************************************
 set listchars=trail:·,tab:▸\ ,eol:¬
