@@ -46,3 +46,6 @@
 [submodule "vim/bundle/vim-stylus"]
 	path = vim/bundle/vim-stylus
 	url = git@github.com:wavded/vim-stylus.git
+[submodule "vim/bundle/vim-jsx"]
+	path = vim/bundle/vim-jsx
+	url = git@github.com:mxw/vim-jsx.git
