@@ -9,8 +9,8 @@
   excludesfile = ~/.gitignore
   compression = -1
 [alias]
-  browse = log --graph --pretty=format:'%Cred%h%Creset %Cblue(%aN)%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr, %ar)%Creset' --abbrev-commit --date=short
-  tree = log --graph --pretty=format:'%Cred%h%Creset %Cblue(%aN)%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr, %ar)%Creset' --abbrev-commit --date=short -n 32
+  browse = log --graph --pretty=format:'%Cred%h%Creset %Cblue(%aN)%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr, %aD)%Creset' --abbrev-commit --date=short
+  tree = "!git browse -n 32"
   st = status
   co = checkout
   up = pull
