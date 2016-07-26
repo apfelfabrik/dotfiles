@@ -145,7 +145,7 @@ set synmaxcol=320 " limit syntax-highlighted columns for long lines
 " set statusline+=%{SyntasticStatuslineFlag()}
 
 " Use jshint (uses ~/.jshintrc)
-let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_javascript_checkers = ['eslint']
 
 if has('gui_running')
   " these somehow don't work unless vimrc is sourced twice. no idea why that is.
