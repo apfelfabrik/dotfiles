@@ -78,11 +78,13 @@ set foldlevel=30
 
 command! -nargs=* TinyFont call FontSize(10)
 command! -nargs=* SmallFont call FontSize(12)
-command! -nargs=* BigFont call FontSize(14)
+command! -nargs=* NormalFont call FontSize(14)
+command! -nargs=* BigFont call FontSize(16)
 command! -nargs=* HugeFont call FontSize(36)
 
 function! FontSize(size)
   let &gfn = "Source Code Pro for Powerline:h" . a:size
+  set linespace=0
 endfunction
 
 " this is for stuff that should happen only once.
@@ -94,7 +96,6 @@ if !exists("vimrc_loaded")
   let vimrc_loaded = 1
   "set lines=24 columns=80
   call FontSize(12)
-  set linespace=1
 
   "source powerline.
   source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
