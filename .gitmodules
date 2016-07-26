@@ -43,3 +43,6 @@
 [submodule "vim/bundle/syntastic-local-eslint"]
 	path = vim/bundle/syntastic-local-eslint
 	url = git@github.com:mtscout6/syntastic-local-eslint.vim.git
+[submodule "vim/bundle/vim-stylus"]
+	path = vim/bundle/vim-stylus
+	url = git@github.com:wavded/vim-stylus.git
