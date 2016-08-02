@@ -167,6 +167,8 @@ set linebreak " Wrap at word
 
 " File Stuff / File types / Autocommands **************************************
 
+" let g:jsx_ext_required = 0 " treat js files as jsx.
+
 function! JavaScriptFold()
   setl foldmethod=syntax
   setl foldlevelstart=1
