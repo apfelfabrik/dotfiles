@@ -41,9 +41,6 @@ ZSH_THEME="robbyrussell"
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # HIST_STAMPS="mm/dd/yyyy"
-#
-HISTSIZE=1000000
-SAVEHIST=1000000
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -112,3 +109,6 @@ export NVM_DIR="/Users/martin/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
+
+HISTSIZE=100000
+SAVEHIST=100000
