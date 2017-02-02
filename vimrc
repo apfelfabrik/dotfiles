@@ -147,6 +147,13 @@ set synmaxcol=320 " limit syntax-highlighted columns for long lines
 " Use jshint (uses ~/.jshintrc)
 let g:syntastic_javascript_checkers = ['eslint']
 
+" typescript with tsuquyomi. from the documentation: syntastic has default
+" TypeScript checker whose name is 'tsc'. You shouldn't use it with running
+" Tusuquyomi because they don't share compile options. Tusuquyomi's checker
+" whose name is 'tsuquyomi' uses tsserver and your tsconfig.json.
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi']
+
 if has('gui_running')
   " these somehow don't work unless vimrc is sourced twice. no idea why that is.
   " might be a macvim issue.
