@@ -1,5 +1,5 @@
 .DS\_Store
-*.sw[p|o|n]
+*.sw[p|o|n|m]
 ~$*
 .ruby-gemset
 .agignore
