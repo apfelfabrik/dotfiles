@@ -154,6 +154,9 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi']
 
+let g:syntastic_filetype_map = {
+  \ "javascript.jsx": "javascript" }
+
 if has('gui_running')
   " these somehow don't work unless vimrc is sourced twice. no idea why that is.
   " might be a macvim issue.
