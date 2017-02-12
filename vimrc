@@ -154,6 +154,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi']
 
+" for ionic development, ignore tidy warnings about custom elements.
+let g:syntastic_html_tidy_ignore_errors=["<ion-", "discarding unexpected </ion-", " proprietary attribute \"ng-"]
+
+
 let g:syntastic_filetype_map = {
   \ "javascript.jsx": "javascript" }
 
