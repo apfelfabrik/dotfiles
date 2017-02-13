@@ -212,6 +212,12 @@ if has("autocmd")
   aug END
 endif
 
+" Swap and Backups ************************************************************
+
+set undodir=~/.vim/undo//
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swp//
+
 " Time Savers *****************************************************************
 
 nmap <leader>v :tabedit $MYVIMRC<CR>
