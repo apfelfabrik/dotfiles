@@ -201,7 +201,7 @@ if has("autocmd")
     " To show current filetype use: set filetype
     au BufNewFile,BufRead config.ru,Gemfile,Vagrantfile,*.rsb,*.rabl set filetype=ruby
     au BufNewFile,BufRead *.jspf set ft=jsp
-    au BufNewFile,BufRead *.json set ft=javascript
+    " au BufNewFile,BufRead *.json set ft=javascript
     au BufNewFile,BufRead *.js,*.jsx set ft=javascript.jsx
     au bufwritepost .vimrc,vimrc source $MYVIMRC
     " strip trailing white space on all lines
