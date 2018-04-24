@@ -93,22 +93,28 @@ alias mvim="rtun mvim"
 
 . `brew --prefix`/etc/profile.d/z.sh
 
-set_bundle_gemfile () {
-  if [[ -f Gemfile.local ]]; then
-    export BUNDLE_GEMFILE=Gemfile.local
-  else
-    unset BUNDLE_GEMFILE
-  fi
-}
+if [ `command -v rbenv` ]; then
+  set_bundle_gemfile () {
+    if [[ -f Gemfile.local ]]; then
+      export BUNDLE_GEMFILE=Gemfile.local
+    else
+      unset BUNDLE_GEMFILE
+    fi
+  }
 
-eval "$(rbenv init -)"
+  command -v rbenv && eval "$(rbenv init -)"
+  preexec_functions+=(set_bundle_gemfile)
+fi
 
-preexec_functions+=(set_bundle_gemfile)
+if [ `command -v nvm` ]; then
+  export NVM_DIR="~/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+fi
 
-export NVM_DIR="/Users/martin/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+if [ `command -v jenv` ]; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+fi
 
 HISTSIZE=100000
 SAVEHIST=100000
