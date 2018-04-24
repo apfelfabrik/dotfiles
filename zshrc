@@ -48,9 +48,12 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git ruby brew)
-
-source $ZSH/oh-my-zsh.sh
+if [ -e "$ZSH" ]; then
+  plugins=(git ruby brew)
+  source $ZSH/oh-my-zsh.sh
+else
+  echo "Did not find oh-my-zsh, make sure it's available."
+fi
 
 # User configuration
 
