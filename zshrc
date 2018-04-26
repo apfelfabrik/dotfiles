@@ -56,9 +56,13 @@ else
 fi
 
 # User configuration
-
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-PATH="/Users/martin/bin:$PATH"
+PATH="$HOME/bin:$PATH"
+if [ -e ~/Library/Python/2.7 ]; then
+  PATH="$PATH:$HOME/Library/Python/2.7/bin"
+else
+  echo "sdlfkjasdlkfj"
+fi
 export PATH
 
 # export MANPATH="/usr/local/man:$MANPATH"
