@@ -58,7 +58,7 @@ fi
 # User configuration
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 PATH="$HOME/bin:$PATH"
-if [ -e ~/Library/Python/2.7 ]; then
+if [ -e $HOME/Library/Python/2.7 ]; then
   PATH="$PATH:$HOME/Library/Python/2.7/bin"
 else
   echo "sdlfkjasdlkfj"
@@ -113,9 +113,12 @@ if [ `command -v rbenv` ]; then
   preexec_functions+=(set_bundle_gemfile)
 fi
 
-if [ `command -v nvm` ]; then
-  export NVM_DIR="~/.nvm"
+NVM_DIR="$HOME/.nvm"
+if [ -e "$NVM_DIR" ]; then
+  export NVM_DIR
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+else
+  echo "nvm not found?"
 fi
 
 if [ `command -v jenv` ]; then
