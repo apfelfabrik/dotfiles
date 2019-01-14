@@ -64,3 +64,6 @@
 [submodule "vim/bundle/editorconfig-vim"]
 	path = vim/bundle/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "vim/bundle/vim-csharp"]
+	path = vim/bundle/vim-csharp
+	url = git://github.com/OrangeT/vim-csharp.git

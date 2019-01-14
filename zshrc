@@ -48,14 +48,21 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git ruby brew)
-
-source $ZSH/oh-my-zsh.sh
+if [ -e "$ZSH" ]; then
+  plugins=(git ruby brew)
+  source $ZSH/oh-my-zsh.sh
+else
+  echo "Did not find oh-my-zsh, make sure it's available."
+fi
 
 # User configuration
-
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-PATH="/Users/martin/bin:$PATH"
+PATH="$HOME/bin:$PATH"
+if [ -e $HOME/Library/Python/2.7 ]; then
+  PATH="$PATH:$HOME/Library/Python/2.7/bin"
+else
+  echo "sdlfkjasdlkfj"
+fi
 export PATH
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -93,22 +100,31 @@ alias mvim="rtun mvim"
 
 . `brew --prefix`/etc/profile.d/z.sh
 
-set_bundle_gemfile () {
-  if [[ -f Gemfile.local ]]; then
-    export BUNDLE_GEMFILE=Gemfile.local
-  else
-    unset BUNDLE_GEMFILE
-  fi
-}
+if [ `command -v rbenv` ]; then
+  set_bundle_gemfile () {
+    if [[ -f Gemfile.local ]]; then
+      export BUNDLE_GEMFILE=Gemfile.local
+    else
+      unset BUNDLE_GEMFILE
+    fi
+  }
 
-eval "$(rbenv init -)"
+  command -v rbenv && eval "$(rbenv init -)"
+  preexec_functions+=(set_bundle_gemfile)
+fi
 
-preexec_functions+=(set_bundle_gemfile)
+NVM_DIR="$HOME/.nvm"
+if [ -e "$NVM_DIR" ]; then
+  export NVM_DIR
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+else
+  echo "nvm not found?"
+fi
 
-export NVM_DIR="/Users/martin/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
+if [ `command -v jenv` ]; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+fi
 
 HISTSIZE=100000
 SAVEHIST=100000

@@ -88,6 +88,12 @@ function! FontSize(size)
   set linespace=0
 endfunction
 
+function! SourceIfExists(file)
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+  endif
+endfunction
+
 " this is for stuff that should happen only once.
 if !exists("vimrc_loaded")
   set nocompatible   " Disable vi-compatibility
@@ -98,8 +104,9 @@ if !exists("vimrc_loaded")
   "set lines=24 columns=80
   call FontSize(12)
 
-  "source powerline.
-  source /usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim
+  " source powerline.
+  call SourceIfExists("/usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim")
+  call SourceIfExists("~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim")
   set laststatus=2
 endif
 
