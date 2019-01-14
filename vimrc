@@ -80,6 +80,7 @@ command! -nargs=* TinyFont call FontSize(10)
 command! -nargs=* SmallFont call FontSize(12)
 command! -nargs=* NormalFont call FontSize(14)
 command! -nargs=* BigFont call FontSize(16)
+command! -nargs=* LargeFont call FontSize(22)
 command! -nargs=* HugeFont call FontSize(36)
 
 function! FontSize(size)
