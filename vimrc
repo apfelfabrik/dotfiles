@@ -251,7 +251,7 @@ set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 
 " Misc ************************************************************************
 
-set clipboard=unnamed
+" set clipboard=unnamed
 set backspace=indent,eol,start
 set number " Show line numbers
 "set matchpairs+=<:>
