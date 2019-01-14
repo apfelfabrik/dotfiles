@@ -150,6 +150,7 @@ set synmaxcol=320 " limit syntax-highlighted columns for long lines
 " set statusline+=%{SyntasticStatuslineFlag()}
 
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_scss_checkers = ['stylelint']
 
 function! FindConfig(prefix, what, where)
     let cfg = findfile(a:what, escape(a:where, ' ') . ';')
@@ -174,7 +175,7 @@ let g:syntastic_html_tidy_ignore_errors=["<ion-", "discarding unexpected </ion-"
 
 
 let g:syntastic_filetype_map = {
-  \ "javascript.jsx": "javascript" }
+    \ "javascript.jsx": "javascript" }
 
 if has('gui_running')
   " these somehow don't work unless vimrc is sourced twice. no idea why that is.
