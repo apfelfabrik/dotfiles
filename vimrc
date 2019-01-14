@@ -127,15 +127,19 @@ set ignorecase " ignore case when searching
 set smartcase  " ignore case when searching lowercase
 nmap <leader>h :noh<CR>
 
-" silver searcher integration from http://stackoverflow.com/a/17327372/1474757
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+" respect gitignore in ctrlp (https://github.com/kien/ctrlp.vim/issues/174)
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects   .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" ag integration (http://stackoverflow.com/a/17327372/1474757)
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
 endif
 
+" rg integration (http://www.wezm.net/technical/2016/09/ripgrep-with-vim/)
+if executable("rg")
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
 
 " Syntax highlighting *********************************************************
 syntax on
