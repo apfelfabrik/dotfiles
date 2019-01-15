@@ -60,8 +60,6 @@ PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 PATH="$HOME/bin:$PATH"
 if [ -e $HOME/Library/Python/2.7 ]; then
   PATH="$PATH:$HOME/Library/Python/2.7/bin"
-else
-  echo "sdlfkjasdlkfj"
 fi
 export PATH
 
@@ -109,7 +107,7 @@ if [ `command -v rbenv` ]; then
     fi
   }
 
-  command -v rbenv && eval "$(rbenv init -)"
+  eval "$(rbenv init -)"
   preexec_functions+=(set_bundle_gemfile)
 fi
 
