@@ -56,11 +56,17 @@ else
 fi
 
 # User configuration
+HISTSIZE=100000
+SAVEHIST=100000
+
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 PATH="$HOME/bin:$PATH"
+
+# python 2
 if [ -e $HOME/Library/Python/2.7 ]; then
   PATH="$PATH:$HOME/Library/Python/2.7/bin"
 fi
+
 export PATH
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -111,6 +117,7 @@ if [ `command -v rbenv` ]; then
   preexec_functions+=(set_bundle_gemfile)
 fi
 
+# nvm
 NVM_DIR="$HOME/.nvm"
 if [ -e "$NVM_DIR" ]; then
   export NVM_DIR
@@ -119,10 +126,13 @@ else
   echo "nvm not found?"
 fi
 
+# jenv
 if [ `command -v jenv` ]; then
   export PATH="$HOME/.jenv/bin:$PATH"
   eval "$(jenv init -)"
 fi
 
-HISTSIZE=100000
-SAVEHIST=100000
+# python 3 virtualenv
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
