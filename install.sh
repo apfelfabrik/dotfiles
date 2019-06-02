@@ -4,7 +4,11 @@
 git submodule init && git submodule update
 
 # symlink dotfiles into ~
-for f in `ls | grep ^[^A-Z\.]`
+echo 'Symlinking dotfiles...'
+for f in `ls | grep ^[^A-Z\.] | grep -v install`
 do
-  ln -is `pwd`/$f ~/.$f
+  echo -n '~/.'$f
+  #ln -is `pwd`/$f ~/.$f
+  echo ' 🥽'
 done
+echo '🏁 Done!'
