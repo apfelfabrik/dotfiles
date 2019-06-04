@@ -126,3 +126,13 @@ fi
 
 HISTSIZE=100000
 SAVEHIST=100000
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/martin/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/martin/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/martin/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/martin/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+# directory specific .envrc files
+eval "$(direnv hook zsh)"
