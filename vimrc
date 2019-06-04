@@ -3,7 +3,7 @@ set nocompatible
 call pathogen#infect()
 
 set shell=/bin/bash\ -l
-runtime! macros/matchit.vim
+" runtime! macros/matchit.vim
 
 let mapleader = "\\"
 
