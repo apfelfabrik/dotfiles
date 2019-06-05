@@ -55,21 +55,33 @@ else
   echo "Did not find oh-my-zsh, make sure it's available."
 fi
 
-# User configuration
+# History configuration
 HISTSIZE=100000
 SAVEHIST=100000
+
+# jenv
+if [ `command -v jenv` ]; then
+  export PATH="$HOME/.jenv/bin:$PATH"
+  eval "$(jenv init -)"
+fi
 
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 PATH="$HOME/bin:$PATH"
 
-# python 2
-if [ -e $HOME/Library/Python/2.7 ]; then
-  PATH="$PATH:$HOME/Library/Python/2.7/bin"
+# Python 3
+# Homebrew installs of python3 do not override the unversioned python
+# commands. Unversioned symlinks are installed into this folder:
+HOMEBREW_PYTHON3=/usr/local/opt/python/libexec/bin
+if [ -e $HOMEBREW_PYTHON3 ]; then
+  PATH=$HOMEBREW_PYTHON3:$PATH
 fi
 
-export PATH
+# Python 3 virtualenv
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+source /usr/local/bin/virtualenvwrapper.sh
 
-# export MANPATH="/usr/local/man:$MANPATH"
+export PATH
 
 export LESS="$LESS -XS"
 
@@ -79,9 +91,6 @@ export TERM=screen-256color
 
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -89,18 +98,15 @@ export ANDROID_HOME=/usr/local/opt/android-sdk
 #   export EDITOR='mvim'
 # fi
 
-# disables globbing, e.g. w/ ^ in HEAD^
+# Disables globbing, e.g. w/ ^ in HEAD^
 unsetopt nomatch
 
-# these are mostly for tmux in os x.
+# These are mostly for tmux in macOS.
 alias rtun="reattach-to-user-namespace"
 alias mvim="rtun mvim"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 . `brew --prefix`/etc/profile.d/z.sh
 
@@ -124,12 +130,6 @@ if [ -e "$NVM_DIR" ]; then
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 else
   echo "nvm not found?"
-fi
-
-# jenv
-if [ `command -v jenv` ]; then
-  export PATH="$HOME/.jenv/bin:$PATH"
-  eval "$(jenv init -)"
 fi
 
 # python 3 virtualenv
