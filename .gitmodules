@@ -67,3 +67,6 @@
 [submodule "vim/bundle/vim-csharp"]
 	path = vim/bundle/vim-csharp
 	url = git://github.com/OrangeT/vim-csharp.git
+[submodule "Resources/Smyck-Color-Scheme"]
+	path = Resources/Smyck-Color-Scheme
+	url = https://github.com/hukl/Smyck-Color-Scheme.git
