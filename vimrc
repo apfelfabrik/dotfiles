@@ -97,7 +97,6 @@ endfunction
 " this is for stuff that should happen only once.
 if !exists("vimrc_loaded")
   set nocompatible   " Disable vi-compatibility
-  set laststatus=2   " Always show the statusline
   set encoding=utf-8 " Necessary to show unicode glyphs
 
   let vimrc_loaded = 1
@@ -105,9 +104,8 @@ if !exists("vimrc_loaded")
   call FontSize(12)
 
   " source powerline.
-  call SourceIfExists("/usr/local/lib/python2.7/site-packages/powerline/bindings/vim/plugin/powerline.vim")
-  call SourceIfExists("~/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim/plugin/powerline.vim")
-  set laststatus=2
+  call SourceIfExists("/usr/local/lib/python3.7/site-packages/powerline/bindings/vim/plugin/powerline.vim")
+  set laststatus=2   " Always show the statusline
 endif
 
 " Indenting *******************************************************************
