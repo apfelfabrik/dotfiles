@@ -106,6 +106,8 @@ if !exists("vimrc_loaded")
   " source powerline.
   call SourceIfExists("/usr/local/lib/python3.7/site-packages/powerline/bindings/vim/plugin/powerline.vim")
   set laststatus=2   " Always show the statusline
+
+  let NERDTreeShowHidden=1
 endif
 
 " Indenting *******************************************************************
