@@ -266,7 +266,7 @@ set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 
 " set clipboard=unnamed
 set backspace=indent,eol,start
-set relativenumber " Show line numbers
+set relativenumber number " Show line numbers
 "set matchpairs+=<:>
 set vb t_vb= " Turn off bell
 nmap <leader>p :set paste!<CR>
