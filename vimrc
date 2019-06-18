@@ -156,8 +156,14 @@ set synmaxcol=320 " limit syntax-highlighted columns for long lines
 " Enable status line indicator
 " set statusline+=%{SyntasticStatuslineFlag()}
 
+" Enable debug output:
+" let g:syntastic_debug = 1
+
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_scss_checkers = ['stylelint']
+
+" eslint with yarn and pnp requires eslint to be run through yarn
+let g:syntastic_javascript_eslint_exe = 'yarn eslint'
 
 function! FindConfig(prefix, what, where)
     let cfg = findfile(a:what, escape(a:where, ' ') . ';')
