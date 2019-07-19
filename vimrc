@@ -152,51 +152,6 @@ endif
 " Syntax highlighting *********************************************************
 syntax on
 set synmaxcol=320 " limit syntax-highlighted columns for long lines
-" let g:syntastic_enable_signs=1
-" Enable status line indicator
-" set statusline+=%{SyntasticStatuslineFlag()}
-
-" Enable debug output:
-" let g:syntastic_debug = 1
-
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_scss_checkers = ['stylelint']
-
-" eslint with yarn and pnp requires eslint to be run through yarn
-let g:syntastic_javascript_eslint_exe = 'yarn eslint'
-
-function! FindConfig(prefix, what, where)
-    let cfg = findfile(a:what, escape(a:where, ' ') . ';')
-    return cfg !=# '' ? ' ' . a:prefix . ' ' . shellescape(cfg) : ''
-endfunction
-
-autocmd FileType typescript let b:syntastic_typescript_tslint_args =
-    \ get(g:, 'syntastic_typescript_tslint_args', '') .
-    \ FindConfig('--project', 'tslint.json', expand('<afile>:p:h', 1))
-
-" typescript with tsuquyomi. from the documentation: syntastic has default
-" TypeScript checker whose name is 'tsc'. You shouldn't use it with running
-" Tusuquyomi because they don't share compile options. Tusuquyomi's checker
-" whose name is 'tsuquyomi' uses tsserver and your tsconfig.json.
-let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_typescript_checkers = ['tslint', 'tsuquyomi']
-
-let g:syntastic_aggregate_errors = 1
-
-" for ionic development, ignore tidy warnings about custom elements.
-let g:syntastic_html_tidy_ignore_errors=["<ion-", "discarding unexpected </ion-", " proprietary attribute \"ng-"]
-
-
-let g:syntastic_filetype_map = {
-    \ "javascript.jsx": "javascript" }
-
-if has('gui_running')
-  " these somehow don't work unless vimrc is sourced twice. no idea why that is.
-  " might be a macvim issue.
-  " sign define SyntasticError text=╳ texthl=error
-  " sign define SyntasticWarning text=→ texthl=todo
-endif
-
 
 " Status Line *****************************************************************
 set showcmd
