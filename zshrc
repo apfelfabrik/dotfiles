@@ -76,10 +76,6 @@ if [ -e $HOMEBREW_PYTHON3 ]; then
   PATH=$HOMEBREW_PYTHON3:$PATH
 fi
 
-# Python 3 virtualenv
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
 
 export PATH
 
