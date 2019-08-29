@@ -151,7 +151,7 @@ endif
 
 " Syntax highlighting *********************************************************
 syntax on
-set synmaxcol=320 " limit syntax-highlighted columns for long lines
+set synmaxcol=1024 " limit syntax-highlighted columns for long lines
 
 " Status Line *****************************************************************
 set showcmd
