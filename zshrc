@@ -64,14 +64,6 @@ fi
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 PATH="$HOME/bin:$PATH"
 
-# Python 3
-# Homebrew installs of python3 do not override the unversioned python
-# commands. Unversioned symlinks are installed into this folder:
-HOMEBREW_PYTHON3=/usr/local/opt/python/libexec/bin
-if [ -e $HOMEBREW_PYTHON3 ]; then
-  PATH=$HOMEBREW_PYTHON3:$PATH
-fi
-
 # Python 3 virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
@@ -126,13 +118,6 @@ if [ -e "$NVM_DIR" ]; then
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 else
   echo "nvm not found?"
-fi
-
-# python 3 virtualenv
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
-  source /usr/local/bin/virtualenvwrapper.sh
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
