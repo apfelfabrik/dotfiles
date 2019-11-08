@@ -55,10 +55,6 @@ else
   echo "Did not find oh-my-zsh, make sure it's available."
 fi
 
-# History configuration
-HISTSIZE=100000
-SAVEHIST=100000
-
 # jenv
 if [ `command -v jenv` ]; then
   export PATH="$HOME/.jenv/bin:$PATH"
