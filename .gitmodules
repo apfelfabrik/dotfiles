@@ -1,6 +1,3 @@
-[submodule "vim/bundle/syntastic"]
-	path = vim/bundle/syntastic
-	url = git://github.com/scrooloose/syntastic.git
 [submodule "vim/bundle/nerdtree"]
 	path = vim/bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
@@ -40,9 +37,6 @@
 [submodule "Resources/powerline-fonts"]
 	path = Resources/powerline-fonts
 	url = git@github.com:powerline/fonts.git
-[submodule "vim/bundle/syntastic-local-eslint"]
-	path = vim/bundle/syntastic-local-eslint
-	url = git@github.com:mtscout6/syntastic-local-eslint.vim.git
 [submodule "vim/bundle/vim-stylus"]
 	path = vim/bundle/vim-stylus
 	url = git@github.com:wavded/vim-stylus.git
@@ -70,3 +64,6 @@
 [submodule "Resources/Smyck-Color-Scheme"]
 	path = Resources/Smyck-Color-Scheme
 	url = https://github.com/hukl/Smyck-Color-Scheme.git
+[submodule "vim/bundle/ale"]
+	path = vim/bundle/ale
+	url = https://github.com/w0rp/ale.git

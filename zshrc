@@ -69,6 +69,14 @@ export WORKON_HOME=$HOME/.virtualenvs
 export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
 source /usr/local/bin/virtualenvwrapper.sh
 
+# Python 3
+# Homebrew installs of python3 do not override the unversioned python
+# commands. Unversioned symlinks are installed into this folder:
+HOMEBREW_PYTHON3=/usr/local/opt/python/libexec/bin
+if [ -e $HOMEBREW_PYTHON3 ]; then
+  PATH=$HOMEBREW_PYTHON3:$PATH
+fi
+
 export PATH
 
 export LESS="$LESS -XS"
@@ -97,6 +105,12 @@ alias mvim="rtun mvim"
 # export ARCHFLAGS="-arch x86_64"
 
 . `brew --prefix`/etc/profile.d/z.sh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+RVM_DIR="$HOME/.rvm"
+if [ -e "$RVM_DIR" ]; then
+  PATH=$PATH:$HOME/.rvm/bin
+fi
 
 if [ `command -v rbenv` ]; then
   set_bundle_gemfile () {
@@ -131,3 +145,4 @@ if type "direnv" > /dev/null; then
   echo "Caution, direnv is hooked into shell"
   eval "$(direnv hook zsh)"
 fi
+
