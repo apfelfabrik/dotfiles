@@ -146,4 +146,7 @@ if [ -f '/Users/martin/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/User
 if [ -f '/Users/martin/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/martin/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 # directory specific .envrc files
-eval "$(direnv hook zsh)"
+if type "direnv" > /dev/null; then
+  echo "Caution, direnv is hooked into shell"
+  eval "$(direnv hook zsh)"
+fi
