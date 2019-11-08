@@ -2,7 +2,7 @@ set nocompatible
 
 call pathogen#infect()
 
-set shell=/bin/bash\ -l
+set shell=/usr/local/bin/zsh
 " runtime! macros/matchit.vim
 
 let mapleader = "\\"
@@ -104,7 +104,7 @@ if !exists("vimrc_loaded")
   call FontSize(12)
 
   " source powerline.
-  call SourceIfExists("/usr/local/lib/python3.7/site-packages/powerline/bindings/vim/plugin/powerline.vim")
+  call SourceIfExists('/usr/local/lib/python3.7/site-packages/powerline/bindings/vim/plugin/powerline.vim')
   set laststatus=2   " Always show the statusline
 
   let NERDTreeShowHidden=1
