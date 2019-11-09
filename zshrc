@@ -55,6 +55,9 @@ else
   echo "Did not find oh-my-zsh, make sure it's available."
 fi
 
+HISTSIZE=200000
+SAVEHIST=200000
+
 # jenv
 if [ `command -v jenv` ]; then
   export PATH="$HOME/.jenv/bin:$PATH"
@@ -63,11 +66,6 @@ fi
 
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 PATH="$HOME/bin:$PATH"
-
-# Python 3 virtualenv
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-source /usr/local/bin/virtualenvwrapper.sh
 
 # Python 3
 # Homebrew installs of python3 do not override the unversioned python
