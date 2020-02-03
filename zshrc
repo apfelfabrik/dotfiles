@@ -123,6 +123,8 @@ if [ `command -v rbenv` ]; then
   preexec_functions+=(set_bundle_gemfile)
 fi
 
+PATH="$PATH:/usr/local/lib/ruby/gems/2.6.0/bin"
+
 # nvm
 NVM_DIR="$HOME/.nvm"
 if [ -e "$NVM_DIR" ]; then
