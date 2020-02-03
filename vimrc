@@ -104,7 +104,9 @@ if !exists("vimrc_loaded")
   call FontSize(12)
 
   " source powerline.
-  call SourceIfExists('/usr/local/lib/python3.7/site-packages/powerline/bindings/vim/plugin/powerline.vim')
+  python3 from powerline.vim import setup as powerline_setup
+  python3 powerline_setup()
+  python3 del powerline_setup
   set laststatus=2   " Always show the statusline
 
   let NERDTreeShowHidden=1
