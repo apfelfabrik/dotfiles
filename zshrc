@@ -173,3 +173,5 @@ if type "direnv" > /dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
+# More java things:
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
