@@ -177,3 +177,7 @@ fi
 
 # More java things:
 JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
+
+# Husky is a liability
+HUSKY_SKIP_HOOKS=1
+HUSKY_SKIP_INSTALL=1
