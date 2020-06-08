@@ -8,7 +8,7 @@ echo 'Symlinking dotfiles...'
 for f in `ls | grep ^[^A-Z\.] | grep -v install`
 do
   echo -n '~/.'$f
-  #ln -is `pwd`/$f ~/.$f
+  ln -is `pwd`/$f ~/.$f
   echo ' 🥽'
 done
 echo '🏁 Done!'
