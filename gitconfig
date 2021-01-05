@@ -28,3 +28,5 @@
   postBuffer = 52428800 # 50M.
 [branch]
   autosetuprebase = always
+[rebase]
+  instructionFormat = (%aN) - %s (%cr, %aD)
