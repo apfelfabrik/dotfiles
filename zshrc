@@ -85,12 +85,13 @@ export TERM=screen-256color
 
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
+
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [ `command -v vim` ]; then
+  export EDITOR='vim'
+else
+  >&2 echo "Cannot find vim in PATH, EDITOR is '$EDITOR'"
+fi
 
 # Disables globbing, e.g. w/ ^ in HEAD^
 unsetopt nomatch
@@ -101,8 +102,10 @@ alias mvim="rtun mvim"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-
-. `brew --prefix`/etc/profile.d/z.sh
+#
+if [ `command -v brew` ]; then
+  . `brew --prefix`/etc/profile.d/z.sh
+fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 RVM_DIR="$HOME/.rvm"
@@ -130,31 +133,32 @@ NVM_DIR="$HOME/.nvm"
 if [ -e "$NVM_DIR" ]; then
   export NVM_DIR
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-else
-  echo "nvm not found?"
-fi
 
-# auto nvm use
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
+  # auto nvm use
+  autoload -U add-zsh-hook
+  load-nvmrc() {
+    local node_version="$(nvm version)"
+    local nvmrc_path="$(nvm_find_nvmrc)"
 
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+    if [ -n "$nvmrc_path" ]; then
+      local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
 
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
+      if [ "$nvmrc_node_version" = "N/A" ]; then
+        nvm install
+      elif [ "$nvmrc_node_version" != "$node_version" ]; then
+        nvm use
+      fi
+    elif [ "$node_version" != "$(nvm version default)" ]; then
+      echo "Reverting to nvm default version"
+      nvm use default
     fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+  }
+  add-zsh-hook chpwd load-nvmrc
+  load-nvmrc
+
+else
+  >&2 echo "Cannot find nvm in PATH, skipping"
+fi
 
 # python 3 virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
