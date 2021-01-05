@@ -176,7 +176,7 @@ if type "direnv" > /dev/null; then
 fi
 
 # More java things:
-JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
 
 # Husky is a liability
 HUSKY_SKIP_HOOKS=1
