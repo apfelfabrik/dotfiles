@@ -22,6 +22,8 @@
   pr-clean = "!git for-each-ref refs/heads/pr/* --format=\"%(refname)\" | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
 [push]
   default = tracking
+[pull]
+  rebase = false
 [apply]
   whitespace = nowarn
 [http]
