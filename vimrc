@@ -101,7 +101,7 @@ if !exists("vimrc_loaded")
 
   let vimrc_loaded = 1
   "set lines=24 columns=80
-  call FontSize(12)
+  call FontSize(14)
 
   " source powerline.
   python3 from powerline.vim import setup as powerline_setup
