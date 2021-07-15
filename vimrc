@@ -220,6 +220,7 @@ set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 
 
 " Misc ************************************************************************
+set rtp+=~/.vim/bundle/tabnine-vim/
 
 " set clipboard=unnamed
 set backspace=indent,eol,start

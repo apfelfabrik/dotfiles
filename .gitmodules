@@ -73,3 +73,7 @@
 [submodule "vim/bundle/vim-vue"]
 	path = vim/bundle/vim-vue
 	url = https://github.com/posva/vim-vue.git
+[submodule "vim/bundle/tabnine-vim"]
+	path = vim/bundle/tabnine-vim
+	url = https://github.com/codota/tabnine-vim
+  shallow = true
