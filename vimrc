@@ -225,7 +225,8 @@ set rtp+=~/.vim/bundle/tabnine-vim/
 
 " set clipboard=unnamed
 set backspace=indent,eol,start
-set relativenumber number " Show line numbers
+set number " Show line numbers
+" set relativenumber number " Show line numbers
 "set matchpairs+=<:>
 set vb t_vb= " Turn off bell
 nmap <leader>p :set paste!<CR>
