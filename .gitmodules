@@ -73,3 +73,6 @@
 [submodule "vim/bundle/vim-vue"]
 	path = vim/bundle/vim-vue
 	url = https://github.com/posva/vim-vue.git
+[submodule "Resources/kitty-themes"]
+	path = Resources/kitty-themes
+	url = https://github.com/dexpota/kitty-themes.git
