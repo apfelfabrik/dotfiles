@@ -48,8 +48,11 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
+
+export NVM_LAZY_LOAD=true
+
 if [ -e "$ZSH" ]; then
-  plugins=(git ruby brew)
+  plugins=(git ruby brew zsh-nvm)
   source $ZSH/oh-my-zsh.sh
 else
   echo "Did not find oh-my-zsh, make sure it's available."
@@ -66,15 +69,6 @@ fi
 
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 PATH="$HOME/bin:$PATH"
-
-# Python 3
-# Homebrew installs of python3 do not override the unversioned python
-# commands. Unversioned symlinks are installed into this folder:
-HOMEBREW_PYTHON3=/usr/local/opt/python/libexec/bin
-if [ -e $HOMEBREW_PYTHON3 ]; then
-  PATH=$HOMEBREW_PYTHON3:$PATH
-fi
-
 export PATH
 
 export LESS="$LESS -XS"
@@ -83,7 +77,6 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TERM=screen-256color
 
-export ANDROID_HOME=/usr/local/opt/android-sdk
 
 
 # Preferred editor for local and remote sessions
@@ -107,66 +100,6 @@ if [ `command -v brew` ]; then
   . `brew --prefix`/etc/profile.d/z.sh
 fi
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-RVM_DIR="$HOME/.rvm"
-if [ -e "$RVM_DIR" ]; then
-  PATH=$PATH:$HOME/.rvm/bin
-fi
-
-if [ `command -v rbenv` ]; then
-  set_bundle_gemfile () {
-    if [[ -f Gemfile.local ]]; then
-      export BUNDLE_GEMFILE=Gemfile.local
-    else
-      unset BUNDLE_GEMFILE
-    fi
-  }
-
-  eval "$(rbenv init -)"
-  preexec_functions+=(set_bundle_gemfile)
-fi
-
-PATH="$PATH:/usr/local/lib/ruby/gems/2.6.0/bin"
-
-# nvm
-NVM_DIR="$HOME/.nvm"
-if [ -e "$NVM_DIR" ]; then
-  export NVM_DIR
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-  # auto nvm use
-  autoload -U add-zsh-hook
-  load-nvmrc() {
-    local node_version="$(nvm version)"
-    local nvmrc_path="$(nvm_find_nvmrc)"
-
-    if [ -n "$nvmrc_path" ]; then
-      local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-      if [ "$nvmrc_node_version" = "N/A" ]; then
-        nvm install
-      elif [ "$nvmrc_node_version" != "$node_version" ]; then
-        nvm use
-      fi
-    elif [ "$node_version" != "$(nvm version default)" ]; then
-      echo "Reverting to nvm default version"
-      nvm use default
-    fi
-  }
-  add-zsh-hook chpwd load-nvmrc
-  load-nvmrc
-
-else
-  >&2 echo "Cannot find nvm in PATH, skipping"
-fi
-
-# python 3 virtualenv
-export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
-  source /usr/local/bin/virtualenvwrapper.sh
-fi
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/martin/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/martin/Downloads/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -185,3 +118,14 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Hom
 # Husky is a liability
 HUSKY_SKIP_HOOKS=1
 HUSKY_SKIP_INSTALL=1
+
+eval "$(pyenv init --path)"
+
+PATH="/Users/martin/Library/Android/sdk/platform-tools:$PATH"
+export ANDROID_SDK="/Users/martin/Library/Android/sdk"
+export ANDROID_HOME=$ANDROID_SDK
+
+. /usr/local/opt/asdf/libexec/asdf.sh
+
+PATH="$HOME/.aha/bin:$PATH"
+eval $(aha autocomplete:script zsh)
