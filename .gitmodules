@@ -55,3 +55,7 @@
 [submodule "Resources/kitty-themes"]
 	path = Resources/kitty-themes
 	url = https://github.com/dexpota/kitty-themes.git
+[submodule "vim/bundle/coc.nvim"]
+	path = vim/bundle/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git
+	branch = release
