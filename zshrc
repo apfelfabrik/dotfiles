@@ -1,6 +1,7 @@
+# zmodload zsh/zprof
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -67,6 +68,9 @@ if [ `command -v jenv` ]; then
   eval "$(jenv init -)"
 fi
 
+# keg-only brews
+PATH="/usr/local/opt/mysql-client/bin:$PATH"
+
 PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 PATH="$HOME/bin:$PATH"
 export PATH
@@ -128,4 +132,8 @@ export ANDROID_HOME=$ANDROID_SDK
 . /usr/local/opt/asdf/libexec/asdf.sh
 
 PATH="$HOME/.aha/bin:$PATH"
-eval $(aha autocomplete:script zsh)
+# eval $(aha autocomplete:script zsh)
+
+# export KIND_EXPERIMENTAL_PROVIDER=podman
+
+# zprof
