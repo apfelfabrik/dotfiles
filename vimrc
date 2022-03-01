@@ -1,7 +1,5 @@
 set nocompatible
 
-call pathogen#infect()
-
 set shell=/usr/local/bin/zsh
 " runtime! macros/matchit.vim
 
