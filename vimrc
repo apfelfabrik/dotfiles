@@ -199,6 +199,10 @@ if has("autocmd")
   aug END
 endif
 
+" Language specific ***********************************************************
+
+let g:ale_fixers = { 'elixir': ['mix_format'] }
+
 " Swap and Backups ************************************************************
 
 set undodir=~/.vim/undo//
