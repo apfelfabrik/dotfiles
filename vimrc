@@ -1,7 +1,5 @@
 set nocompatible
 
-call pathogen#infect()
-
 set shell=/usr/local/bin/zsh
 " runtime! macros/matchit.vim
 
@@ -200,6 +198,10 @@ if has("autocmd")
     " au FileType javascript setl fen
   aug END
 endif
+
+" Language specific ***********************************************************
+
+let g:ale_fixers = { 'elixir': ['mix_format'] }
 
 " Swap and Backups ************************************************************
 

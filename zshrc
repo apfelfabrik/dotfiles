@@ -129,7 +129,7 @@ PATH="/Users/martin/Library/Android/sdk/platform-tools:$PATH"
 export ANDROID_SDK="/Users/martin/Library/Android/sdk"
 export ANDROID_HOME=$ANDROID_SDK
 
-. /usr/local/opt/asdf/libexec/asdf.sh
+if [ -f '/usr/local/opt/asdf/libexec/asdf.sh' ]; then . '/usr/local/opt/asdf/libexec/asdf.sh'; fi
 
 PATH="$HOME/.aha/bin:$PATH"
 # eval $(aha autocomplete:script zsh)
