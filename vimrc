@@ -248,3 +248,6 @@ nmap <leader>l :set list!<CR>
 " endfor
 
 let g:localvimrc_whitelist = "/Users/martin/Development/.*/\.lvimrc"
+
+inoremap <silent><expr> <c-space> coc#refresh()
+
