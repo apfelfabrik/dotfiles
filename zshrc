@@ -2,11 +2,12 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -62,6 +63,8 @@ fi
 HISTSIZE=200000
 SAVEHIST=200000
 
+eval "$(starship init zsh)"
+
 # jenv
 if [ `command -v jenv` ]; then
   export PATH="$HOME/.jenv/bin:$PATH"
@@ -79,9 +82,7 @@ export LESS="$LESS -XS"
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export TERM=screen-256color
-
-
+export TERM=xterm-256color
 
 # Preferred editor for local and remote sessions
 if [ `command -v vim` ]; then
@@ -131,9 +132,14 @@ export ANDROID_HOME=$ANDROID_SDK
 
 if [ -f '/usr/local/opt/asdf/libexec/asdf.sh' ]; then . '/usr/local/opt/asdf/libexec/asdf.sh'; fi
 
-PATH="$HOME/.aha/bin:$PATH"
+# PATH="$HOME/.aha/bin:$PATH"
 # eval $(aha autocomplete:script zsh)
+#
+eval "$(rbenv init - zsh)"
+#
 
 # export KIND_EXPERIMENTAL_PROVIDER=podman
+#
+. ~/.secrets
 
 # zprof
