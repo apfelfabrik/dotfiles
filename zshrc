@@ -142,4 +142,6 @@ eval "$(rbenv init - zsh)"
 #
 . ~/.secrets
 
+alias vim="nvim"
+
 # zprof
