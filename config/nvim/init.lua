@@ -1,12 +1,9 @@
 require("plugins")
+require("plugins.colorscheme")
+require("plugins.lualine")
 
 local opt = vim.opt
 local keymap = vim.keymap
-
-local status, _ = pcall(vim.cmd, "colorscheme smyck")
-if not status then
-  print "Could not switch colorscheme"
-end
 
 vim.g.mapleader = "\\"
 
