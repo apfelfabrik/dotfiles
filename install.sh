@@ -2,7 +2,7 @@
 set +e
 
 # init and update submodules for vim
-git submodule init && git submodule update
+git submodule update --init --recursive --progress
 
 # symlink dotfiles into ~
 echo 'Symlinking dotfiles...'
