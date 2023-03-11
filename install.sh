@@ -9,21 +9,22 @@ echo 'Symlinking dotfiles...'
 
 exceptions=("README" "Eclipse" "Resources" "config" "install.sh")
 
-containsElement () {
-  local e match="$1"
+contained () {
+  local argument match="$1"
   shift
-  for e; do [[ "$e" == "$match" ]] && return 0; done
+  for argument; do [[ "$argument" == "$match" ]] && return 0; done
   return 1
 }
 
-repoPath=$(pwd)
+mkdir -p ~/.config
+for file in ./* ./config/* ; do
+  basename=${file#./}
 
-for file in ./* ; do
-  basename=$(basename -- "$file")
-  if [ -e "$file" ] && ! containsElement "$basename" "${exceptions[@]}"; then
+  if [ -e "$file" ] && ! contained "$basename" "${exceptions[@]}"; then
 
     dotfile=~/."$basename"
-    target="$repoPath/$basename"
+    target="$(pwd)/$basename"
+
     if [ -e "$dotfile" ]; then
       read -rp "$dotfile already exists. Replace? [y/N]" -n1
       echo
@@ -33,6 +34,7 @@ for file in ./* ; do
         continue
       fi
     fi
+
     ln -isvw "$target" "$dotfile"
   fi
 done
