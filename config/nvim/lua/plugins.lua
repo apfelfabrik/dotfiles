@@ -15,6 +15,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'dim13/smyck.vim'
+  use 'christoomey/vim-tmux-navigator'
   use 'nvim-lualine/lualine.nvim'
   -- use 'nvim-tree/nvim-tree.lua'
   use 'preservim/nerdtree'

@@ -1,6 +1,7 @@
 require("plugins")
 require("plugins.colorscheme")
 require("plugins.lualine")
+require("plugins.vim-tmux-navigator")
 
 local opt = vim.opt
 local keymap = vim.keymap
