@@ -1,7 +1,4 @@
 require("plugins")
-require("plugins.colorscheme")
-require("plugins.lualine")
-require("plugins.vim-tmux-navigator")
 
 local opt = vim.opt
 local keymap = vim.keymap
@@ -13,7 +10,7 @@ opt.relativenumber = true
 opt.number = true
 opt.wrap = false
 opt.linebreak = true -- wrap at word
-opt.signcolumn = "yes"
+opt.signcolumn = "auto"
 opt.scrolloff = 2
 
 -- Tabs & Whitespace
