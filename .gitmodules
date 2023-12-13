@@ -56,3 +56,6 @@
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+[submodule "Resources/nerd-fonts"]
+	path = Resources/nerd-fonts
+	url = https://github.com/ryanoasis/nerd-fonts.git
