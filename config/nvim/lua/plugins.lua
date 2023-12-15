@@ -15,18 +15,53 @@ vim.opt.rtp:prepend(lazypath)
 --   use 'nvim-telescope/telescope.nvim'
 
 require("lazy").setup({
-  "nvim-lua/plenary.nvim",
   {
     "dim13/smyck.vim",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      vim.cmd("colorscheme smyck")
-    end
+      -- load the colorscheme here
+      vim.cmd([[colorscheme smyck]])
+    end,
   },
+  "nvim-lua/plenary.nvim",
   "christoomey/vim-tmux-navigator",
   "nvim-lualine/lualine.nvim",
   "preservim/nerdtree",
-
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
-  "neovim/nvim-lspconfig",
+  {
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
+    },
+  },
 })
+
+local servers = {
+  -- clangd = {},
+  -- gopls = {},
+  -- pyright = {},
+  -- rust_analyzer = {},
+  tsserver = {},
+  eslint = {},
+  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
+
+  lua_ls = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false }
+    },
+  },
+}
+
+require('mason').setup()
+require('mason-lspconfig').setup {
+  ensure_installed = vim.tbl_keys(servers)
+}
+
+require('lspconfig').gdscript.setup{
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  }
+}
