@@ -59,6 +59,10 @@ require('mason-lspconfig').setup {
   ensure_installed = vim.tbl_keys(servers)
 }
 
+require('lspconfig').tsserver.setup{}
+require('lspconfig').eslint.setup{}
+require('lspconfig').lua_ls.setup{}
+
 require('lspconfig').gdscript.setup{
   on_attach = on_attach,
   flags = {
