@@ -125,6 +125,7 @@ set splitbelow splitright
 
 " Cursor highlights ***********************************************************
 set scrolloff=2
+set sidescroll=1
 " set cursorline " became too slow.
 "set cursorcolumn
 

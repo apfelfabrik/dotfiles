@@ -5,8 +5,7 @@ export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+# Optionally, if you set this to "random", it'll load a random theme each time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
 
 # Example aliases
@@ -54,7 +53,8 @@ export ZSH=$HOME/.oh-my-zsh
 export NVM_LAZY_LOAD=true
 
 if [ -e "$ZSH" ]; then
-  plugins=(git ruby brew zsh-nvm)
+  # plugins=(git ruby brew zsh-nvm)
+  plugins=(git ruby zsh-nvm)
   source $ZSH/oh-my-zsh.sh
 else
   echo "Did not find oh-my-zsh, make sure it's available."
@@ -95,14 +95,14 @@ fi
 unsetopt nomatch
 
 # These are mostly for tmux in macOS.
-alias rtun="reattach-to-user-namespace"
-alias mvim="rtun mvim"
+# alias rtun="reattach-to-user-namespace"
+# alias mvim="rtun mvim"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
-#
 if [ `command -v brew` ]; then
   . `brew --prefix`/etc/profile.d/z.sh
+  eval "$(/usr/local/bin/brew shellenv)"
 fi
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -141,5 +141,7 @@ eval "$(rbenv init - zsh)"
 # export KIND_EXPERIMENTAL_PROVIDER=podman
 #
 . ~/.secrets
+
+alias vim="nvim"
 
 # zprof
