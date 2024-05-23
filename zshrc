@@ -49,7 +49,6 @@ export ZSH=$HOME/.oh-my-zsh
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-
 export NVM_LAZY_LOAD=true
 
 if [ -e "$ZSH" ]; then
@@ -60,26 +59,27 @@ else
   echo "Did not find oh-my-zsh, make sure it's available."
 fi
 
-HISTSIZE=200000
-SAVEHIST=200000
+# Disables globbing, e.g. w/ ^ in HEAD^
+unsetopt nomatch
+
+setopt SHARE_HISTORY
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+
+setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_BEEP
+
+HISTSIZE=340000
+SAVEHIST=340000
+HISTFILE=~/.zsh_shared_history
 
 eval "$(starship init zsh)"
 
-# jenv
-if [ `command -v jenv` ]; then
-  export PATH="$HOME/.jenv/bin:$PATH"
-  eval "$(jenv init -)"
-fi
-
-# keg-only brews
-PATH="/usr/local/opt/mysql-client/bin:$PATH"
-
-PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-PATH="$HOME/bin:$PATH"
-export PATH
-
 export LESS="$LESS -XS"
-
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TERM=xterm-256color
@@ -91,25 +91,10 @@ else
   >&2 echo "Cannot find vim in PATH, EDITOR is '$EDITOR'"
 fi
 
-# Disables globbing, e.g. w/ ^ in HEAD^
-unsetopt nomatch
-
-# These are mostly for tmux in macOS.
-# alias rtun="reattach-to-user-namespace"
-# alias mvim="rtun mvim"
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# enable rupa/z
 if [ `command -v brew` ]; then
-  . `brew --prefix`/etc/profile.d/z.sh
-  eval "$(/usr/local/bin/brew shellenv)"
+  source `brew --prefix`/etc/profile.d/z.sh
 fi
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/martin/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/martin/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/martin/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/martin/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 # directory specific .envrc files
 if type "direnv" > /dev/null; then
@@ -117,31 +102,9 @@ if type "direnv" > /dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
-# More java things:
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_161.jdk/Contents/Home
-
 # Husky is a liability
 HUSKY_SKIP_HOOKS=1
 HUSKY_SKIP_INSTALL=1
+HUSKY=0
 
-eval "$(pyenv init --path)"
-
-PATH="/Users/martin/Library/Android/sdk/platform-tools:$PATH"
-export ANDROID_SDK="/Users/martin/Library/Android/sdk"
-export ANDROID_HOME=$ANDROID_SDK
-
-if [ -f '/usr/local/opt/asdf/libexec/asdf.sh' ]; then . '/usr/local/opt/asdf/libexec/asdf.sh'; fi
-
-# PATH="$HOME/.aha/bin:$PATH"
-# eval $(aha autocomplete:script zsh)
-#
-eval "$(rbenv init - zsh)"
-#
-
-# export KIND_EXPERIMENTAL_PROVIDER=podman
-#
 . ~/.secrets
-
-alias vim="nvim"
-
-# zprof

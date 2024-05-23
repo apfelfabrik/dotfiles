@@ -1,6 +1,10 @@
 set nocompatible
 
-set shell=/usr/local/bin/zsh
+" Prefer zsh
+let zsh_path = trim(system('which zsh'))
+if !empty(zsh_path)
+  let &shell = zsh_path
+endif
 " runtime! macros/matchit.vim
 
 let mapleader = "\\"
@@ -102,10 +106,10 @@ if !exists("vimrc_loaded")
   call FontSize(14)
 
   " source powerline.
-  python3 from powerline.vim import setup as powerline_setup
-  python3 powerline_setup()
-  python3 del powerline_setup
-  set laststatus=2   " Always show the statusline
+  " python3 from powerline.vim import setup as powerline_setup
+  " python3 powerline_setup()
+  " python3 del powerline_setup
+  " set laststatus=2   " Always show the statusline
 
   let NERDTreeShowHidden=1
 endif
@@ -113,7 +117,7 @@ endif
 " Indenting *******************************************************************
 set ai " Automatically set the indent of a new line (local to buffer)
 set si " smartindent (local to buffer)
-set formatprg=/usr/local/bin/par " par for better formatting of prose.
+set formatprg=par " par for better formatting of prose.
 
 " Windows *********************************************************************
 "set equalalways " Multiple windows, when created, are equal in size
