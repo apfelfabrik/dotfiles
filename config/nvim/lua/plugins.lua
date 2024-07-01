@@ -13,6 +13,27 @@ vim.opt.rtp:prepend(lazypath)
 
 --   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 --   use 'nvim-telescope/telescope.nvim'
+--
+local servers = {
+  -- clangd = {},
+  -- gopls = {},
+  -- pyright = {},
+  -- rust_analyzer = {},
+  tsserver = {},
+  eslint = {},
+  graphql = {},
+  html = {},
+  cssls = {},
+
+  lua_ls = {
+    Lua = {
+      diagnostics = { globals = { 'vim' } },
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false }
+    },
+  },
+}
+
 
 require("lazy").setup({
   {
@@ -29,43 +50,71 @@ require("lazy").setup({
   "nvim-lualine/lualine.nvim",
   "preservim/nerdtree",
   {
+    'williamboman/mason.nvim',
+    config = function()
+      require('mason').setup()
+    end
+  },
+  {
+    'williamboman/mason-lspconfig.nvim',
+    config = function()
+      require('mason-lspconfig').setup({
+        ensure_installed = vim.tbl_keys(servers)
+        -- automatic_installation = true, -- Automatically install language servers
+      })
+    end
+  },
+  {
     'neovim/nvim-lspconfig',
     dependencies = {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
     },
+    config = function()
+      local lspconfig = require('lspconfig')
+      local mason_lspconfig = require('mason-lspconfig')
+
+      mason_lspconfig.setup_handlers({
+        function(server_name)
+          lspconfig[server_name].setup({})
+        end,
+      })
+
+      lspconfig.gdscript.setup{
+        on_attach = on_attach,
+        flags = {
+          debounce_text_changes = 150,
+        }
+      }
+    end
   },
+
+  {
+    -- lazydev.nvim is a plugin that properly configures LuaLS for
+    -- editing your Neovim config by lazily updating your workspace
+    -- ibraries.
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    -- opts = {
+    --   library = {
+    --     -- See the configuration section for more details
+    --     -- Load luvit types when the `vim.uv` word is found
+    --     { path = "luvit-meta/library", words = { "vim%.uv" } },
+    --   },
+    -- },
+  },
+
+  {
+    -- A completion engine plugin for neovim written in Lua. Completion
+    -- sources are installed from external repositories and "sourced".
+    "hrsh7th/nvim-cmp",
+    opts = function(_, opts)
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, {
+        name = "lazydev",
+        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+      })
+    end,
+  },
+
 })
-
-local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
-  tsserver = {},
-  eslint = {},
-  -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false }
-    },
-  },
-}
-
-require('mason').setup()
-require('mason-lspconfig').setup {
-  ensure_installed = vim.tbl_keys(servers)
-}
-
-require('lspconfig').tsserver.setup{}
-require('lspconfig').eslint.setup{}
-require('lspconfig').lua_ls.setup{}
-
-require('lspconfig').gdscript.setup{
-  on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  }
-}
