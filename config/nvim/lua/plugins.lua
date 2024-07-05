@@ -10,9 +10,6 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-
---   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
---   use 'nvim-telescope/telescope.nvim'
 --
 local servers = {
   -- clangd = {},
@@ -117,4 +114,46 @@ require("lazy").setup({
     end,
   },
 
+  {
+    "nvim-telescope/telescope.nvim", tag = "0.1.8",
+    dependencies = {
+      "nvim-lua/plenary.nvim"
+    },
+    config = function()
+      local telescope = require("telescope")
+      local builtin = require('telescope.builtin')
+
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "fuzzy find files"})
+      -- vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+      -- vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+      -- vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+
+      --   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+      --   use 'nvim-telescope/telescope.nvim'
+      --
+      -- vim.api.nvim_set_keymap('n', '<C-p>', ':YourCommandHere<CR>', { noremap = true, silent = true })
+      vim.keymap.set('n', '<C-p>', ':Telescope find_files<CR>', { noremap = true, silent = true })
+
+      telescope.setup({
+        defaults = {
+          path_display = { "smart" },
+          mappings = {
+            i = {
+              -- ["<C-h>"] = "which_key",
+              -- ["<C-p>"] = "find_files"
+            }
+          }
+        }
+      })
+    end
+  },
+
+  {
+    "David-Kunz/gen.nvim",
+    opts = {
+      model = "llama3:70b-instruct",
+      host = "localhost",
+      port = "11434",
+    }
+  },
 })
