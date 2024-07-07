@@ -31,7 +31,6 @@ local servers = {
   },
 }
 
-
 require("lazy").setup({
   {
     "dim13/smyck.vim",
@@ -46,6 +45,7 @@ require("lazy").setup({
   "christoomey/vim-tmux-navigator",
   "nvim-lualine/lualine.nvim",
   "preservim/nerdtree",
+
   {
     'williamboman/mason.nvim',
     config = function()
@@ -60,6 +60,13 @@ require("lazy").setup({
         -- automatic_installation = true, -- Automatically install language servers
       })
     end
+  },
+  {
+    "nvimtools/none-ls.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("null-ls").setup()
+    end,
   },
   {
     'neovim/nvim-lspconfig',
@@ -83,6 +90,8 @@ require("lazy").setup({
           debounce_text_changes = 150,
         }
       }
+
+      vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Execute Code Action"})
     end
   },
 
@@ -117,22 +126,23 @@ require("lazy").setup({
   {
     "nvim-telescope/telescope.nvim", tag = "0.1.8",
     dependencies = {
-      "nvim-lua/plenary.nvim"
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope-ui-select.nvim"
     },
     config = function()
       local telescope = require("telescope")
-      local builtin = require('telescope.builtin')
+      -- local builtin = require("telescope.builtin")
 
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "fuzzy find files"})
-      -- vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-      -- vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-      -- vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+      -- vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "fuzzy find files"})
+      -- vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+      -- vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+      -- vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 
-      --   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-      --   use 'nvim-telescope/telescope.nvim'
+      --   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
+      --   use "nvim-telescope/telescope.nvim"
       --
-      -- vim.api.nvim_set_keymap('n', '<C-p>', ':YourCommandHere<CR>', { noremap = true, silent = true })
-      vim.keymap.set('n', '<C-p>', ':Telescope find_files<CR>', { noremap = true, silent = true })
+      -- vim.api.nvim_set_keymap("n", "<C-p>", ":YourCommandHere<CR>", { noremap = true, silent = true })
+      vim.keymap.set("n", "<C-p>", ":Telescope find_files<CR>", { noremap = true, silent = true, desc = "Find Files" })
 
       telescope.setup({
         defaults = {
@@ -143,8 +153,31 @@ require("lazy").setup({
               -- ["<C-p>"] = "find_files"
             }
           }
-        }
+        },
+        extensions = {
+          ["ui-select"] = {
+            require("telescope.themes").get_dropdown {
+              -- even more opts
+            }
+
+            -- pseudo code / specification for writing custom displays, like the one
+            -- for "codeactions"
+            -- specific_opts = {
+            --   [kind] = {
+            --     make_indexed = function(items) -> indexed_items, width,
+            --     make_displayer = function(widths) -> displayer
+            --     make_display = function(displayer) -> function(e)
+            --     make_ordinal = function(e) -> string
+            --   },
+            --   -- for example to disable the custom builtin "codeactions" display
+            --      do the following
+            --   codeactions = false,
+            -- }
+          }
+        },
       })
+
+      require("telescope").load_extension("ui-select")
     end
   },
 
