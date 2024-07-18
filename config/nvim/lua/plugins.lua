@@ -56,8 +56,8 @@ require("lazy").setup({
     'williamboman/mason-lspconfig.nvim',
     config = function()
       require('mason-lspconfig').setup({
-        ensure_installed = vim.tbl_keys(servers)
-        -- automatic_installation = true, -- Automatically install language servers
+        ensure_installed = vim.tbl_keys(servers),
+        automatic_installation = false,
       })
     end
   },
@@ -80,7 +80,7 @@ require("lazy").setup({
 
       mason_lspconfig.setup_handlers({
         function(server_name)
-          lspconfig[server_name].setup({})
+          lspconfig[server_name].setup(servers[server_name])
         end,
       })
 
@@ -101,13 +101,20 @@ require("lazy").setup({
     -- ibraries.
     "folke/lazydev.nvim",
     ft = "lua", -- only load on lua files
-    -- opts = {
-    --   library = {
-    --     -- See the configuration section for more details
-    --     -- Load luvit types when the `vim.uv` word is found
-    --     { path = "luvit-meta/library", words = { "vim%.uv" } },
-    --   },
-    -- },
+  },
+
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
   },
 
   {
@@ -131,48 +138,18 @@ require("lazy").setup({
     },
     config = function()
       local telescope = require("telescope")
-      -- local builtin = require("telescope.builtin")
-
-      -- vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "fuzzy find files"})
-      -- vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-      -- vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-      -- vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
-
-      --   use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
-      --   use "nvim-telescope/telescope.nvim"
-      --
-      -- vim.api.nvim_set_keymap("n", "<C-p>", ":YourCommandHere<CR>", { noremap = true, silent = true })
       vim.keymap.set("n", "<C-p>", ":Telescope find_files<CR>", { noremap = true, silent = true, desc = "Find Files" })
 
       telescope.setup({
         defaults = {
           path_display = { "smart" },
           mappings = {
-            i = {
-              -- ["<C-h>"] = "which_key",
-              -- ["<C-p>"] = "find_files"
-            }
+            i = { }
           }
         },
         extensions = {
           ["ui-select"] = {
-            require("telescope.themes").get_dropdown {
-              -- even more opts
-            }
-
-            -- pseudo code / specification for writing custom displays, like the one
-            -- for "codeactions"
-            -- specific_opts = {
-            --   [kind] = {
-            --     make_indexed = function(items) -> indexed_items, width,
-            --     make_displayer = function(widths) -> displayer
-            --     make_display = function(displayer) -> function(e)
-            --     make_ordinal = function(e) -> string
-            --   },
-            --   -- for example to disable the custom builtin "codeactions" display
-            --      do the following
-            --   codeactions = false,
-            -- }
+            require("telescope.themes").get_dropdown { }
           }
         },
       })
@@ -182,11 +159,29 @@ require("lazy").setup({
   },
 
   {
+    'nvim-treesitter/nvim-treesitter',
+    build = ":TSUpdate",
+    config = function()
+      require'nvim-treesitter.configs'.setup {
+        auto_install = false,
+        highlight = { enable = true },
+        indent = { enable = true },
+        ensure_installed = {
+          'javascript', 'lua', 'luadoc', 'markdown', 'typescript', 'vim', 'vimdoc',
+        }
+      }
+    end
+  },
+
+  {
     "David-Kunz/gen.nvim",
     opts = {
       model = "llama3:70b-instruct",
       host = "localhost",
       port = "11434",
-    }
+    },
+    config = function()
+      vim.keymap.set({ 'n', 'v' }, '<leader>g', ':Gen<CR>')
+    end
   },
 })
