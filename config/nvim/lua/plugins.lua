@@ -22,6 +22,9 @@ local servers = {
   html = {},
   cssls = {},
 
+  terraformls = {},
+  tflint = {},
+
   lua_ls = {
     Lua = {
       diagnostics = { globals = { 'vim' } },
@@ -167,7 +170,7 @@ require("lazy").setup({
         highlight = { enable = true },
         indent = { enable = true },
         ensure_installed = {
-          'javascript', 'lua', 'luadoc', 'markdown', 'typescript', 'vim', 'vimdoc',
+          'javascript', 'lua', 'luadoc', 'markdown', 'typescript', 'vim', 'vimdoc', 'terraform'
         }
       }
     end
