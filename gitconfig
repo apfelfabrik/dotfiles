@@ -29,7 +29,7 @@
 [apply]
   whitespace = nowarn
 [http]
-  postBuffer = 52428800 # 50M.
+  postBuffer = 157286400 # 150M.
 [branch]
   autosetuprebase = always
 [rebase]
