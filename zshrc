@@ -85,19 +85,26 @@ export LC_ALL=en_US.UTF-8
 export TERM=xterm-256color
 
 # Preferred editor for local and remote sessions
-if [ `command -v vim` ]; then
+if command -v nvim &> /dev/null; then
+  alias vim="nvim"
+fi
+
+if command -v vim &> /dev/null; then
   export EDITOR='vim'
 else
   >&2 echo "Cannot find vim in PATH, EDITOR is '$EDITOR'"
 fi
 
 # enable rupa/z
-if [ `command -v brew` ]; then
-  source `brew --prefix`/etc/profile.d/z.sh
+if command -v brew &> /dev/null; then
+  Z_PATH="$(brew --prefix)/etc/profile.d/z.sh"
+  if [[ -f "$Z_PATH" ]]; then
+    source "$Z_PATH"
+  fi
 fi
 
 # directory specific .envrc files
-if type "direnv" > /dev/null; then
+if type "direnv" &> /dev/null; then
   echo "Caution, direnv is hooked into shell"
   eval "$(direnv hook zsh)"
 fi
