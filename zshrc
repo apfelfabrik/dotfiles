@@ -114,4 +114,11 @@ HUSKY_SKIP_HOOKS=1
 HUSKY_SKIP_INSTALL=1
 HUSKY=0
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/martinczuchra/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/martinczuchra/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/martinczuchra/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/martinczuchra/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+
 . ~/.secrets
