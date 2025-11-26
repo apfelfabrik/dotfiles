@@ -11,6 +11,7 @@
 [core]
   excludesfile = ~/.gitignore
   compression = -1
+  pager = less -S
 [alias]
   browse = log --graph --pretty=format:'%Cred%h%Creset %Cblue(%aN)%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr, %aD)%Creset' --abbrev-commit --date=short
   tree = "!git browse -n 32"
@@ -29,7 +30,7 @@
 [apply]
   whitespace = nowarn
 [http]
-  postBuffer = 52428800 # 50M.
+  postBuffer = 157286400 # 150M.
 [branch]
   autosetuprebase = always
 [rebase]

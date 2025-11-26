@@ -16,11 +16,14 @@ local servers = {
   -- gopls = {},
   -- pyright = {},
   -- rust_analyzer = {},
-  tsserver = {},
+  ts_ls = {},
   eslint = {},
   graphql = {},
   html = {},
   cssls = {},
+
+  terraformls = {},
+  tflint = {},
 
   lua_ls = {
     Lua = {
@@ -159,15 +162,15 @@ require("lazy").setup({
   },
 
   {
-    'nvim-treesitter/nvim-treesitter',
+    "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     config = function()
-      require'nvim-treesitter.configs'.setup {
+      require"nvim-treesitter.configs".setup {
         auto_install = false,
         highlight = { enable = true },
         indent = { enable = true },
         ensure_installed = {
-          'javascript', 'lua', 'luadoc', 'markdown', 'typescript', 'vim', 'vimdoc',
+          "javascript", "lua", "luadoc", "markdown", "typescript", "vim", "vimdoc", "terraform"
         }
       }
     end
@@ -181,7 +184,23 @@ require("lazy").setup({
       port = "11434",
     },
     config = function()
-      vim.keymap.set({ 'n', 'v' }, '<leader>g', ':Gen<CR>')
+      vim.keymap.set({ "n", "v" }, "<leader>g", ":Gen<CR>")
     end
   },
+
+  {
+    "dhruvasagar/vim-table-mode",
+    config = function()
+      -- vim.keymap.set({ "n", "v" }, "<leader>tm", ":Table")
+      -- vim.0.table_mode_corner = '|'
+    end
+  },
+
+  {
+    "tpope/vim-fugitive",
+    cmd = { "Git", "G", "Gdiffsplit", "Gread", "Gwrite", "Ggrep", "GMove", "GRename", "GRemove", "GBrowse" },
+    keys = {
+      { "<leader>gs", ":Git<CR>", desc = "Git status" },
+    },
+},
 })

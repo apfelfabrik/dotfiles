@@ -85,26 +85,68 @@ export LC_ALL=en_US.UTF-8
 export TERM=xterm-256color
 
 # Preferred editor for local and remote sessions
-if [ `command -v vim` ]; then
+if command -v nvim &> /dev/null; then
+  alias vim="nvim"
+fi
+
+if command -v vim &> /dev/null; then
   export EDITOR='vim'
 else
   >&2 echo "Cannot find vim in PATH, EDITOR is '$EDITOR'"
 fi
 
 # enable rupa/z
-if [ `command -v brew` ]; then
-  source `brew --prefix`/etc/profile.d/z.sh
+if command -v brew &> /dev/null; then
+  Z_PATH="$(brew --prefix)/etc/profile.d/z.sh"
+  if [[ -f "$Z_PATH" ]]; then
+    source "$Z_PATH"
+  fi
 fi
 
 # directory specific .envrc files
-if type "direnv" > /dev/null; then
+if type "direnv" &> /dev/null; then
   echo "Caution, direnv is hooked into shell"
   eval "$(direnv hook zsh)"
 fi
+
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 # Husky is a liability
 HUSKY_SKIP_HOOKS=1
 HUSKY_SKIP_INSTALL=1
 HUSKY=0
 
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/martinczuchra/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/martinczuchra/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/martinczuchra/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/martinczuchra/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+
 . ~/.secrets
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# Android SDK
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH"
+
+# env load helper
+loadenv() {
+  set -a
+  . "${1:-.env}"
+  set +a
+}
