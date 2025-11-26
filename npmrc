@@ -1,3 +1,1 @@
-root=$HOME/.npm
-binroot=/usr/local/bin
-manroot=/usr/local/share/man
+//registry.npmjs.org/:_authToken=${NPM_TOKEN}
