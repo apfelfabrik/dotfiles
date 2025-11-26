@@ -109,6 +109,8 @@ if type "direnv" &> /dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
 # Husky is a liability
 HUSKY_SKIP_HOOKS=1
 HUSKY_SKIP_INSTALL=1
@@ -122,3 +124,29 @@ if [ -f '/Users/martinczuchra/Downloads/google-cloud-sdk/completion.zsh.inc' ]; 
 
 
 . ~/.secrets
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+# Android SDK
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH"
+
+# env load helper
+loadenv() {
+  set -a
+  . "${1:-.env}"
+  set +a
+}
