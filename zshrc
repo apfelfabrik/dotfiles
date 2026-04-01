@@ -139,3 +139,4 @@ loadenv() {
 export PATH="$PATH:/Users/martinczuchra/.lmstudio/bin"
 # End of LM Studio CLI section
 
+alias docker=podman
