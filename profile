@@ -22,3 +22,8 @@ fi
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/martinczuchra/.lmstudio/bin"
+# End of LM Studio CLI section
+
