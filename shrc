@@ -1,0 +1,48 @@
+# Shared shell configuration, sourced by both zshrc and bashrc.
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+
+export LESS="$LESS -XS"
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export TERM=xterm-256color
+
+# Preferred editor
+if command -v nvim &> /dev/null; then
+  alias vim="nvim"
+fi
+
+if command -v vim &> /dev/null; then
+  export EDITOR='vim'
+else
+  >&2 echo "Cannot find vim in PATH, EDITOR is '$EDITOR'"
+fi
+
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+# Husky is a liability
+HUSKY_SKIP_HOOKS=1
+HUSKY_SKIP_INSTALL=1
+HUSKY=0
+
+[ -f ~/.secrets ] && . ~/.secrets
+
+# Android SDK
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH"
+
+# env load helper
+loadenv() {
+  set -a
+  . "${1:-.env}"
+  set +a
+}
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/martinczuchra/.lmstudio/bin"
+# End of LM Studio CLI section
+
+alias docker=podman

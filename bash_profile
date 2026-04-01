@@ -1,4 +1,4 @@
-# Source bashrc for shared setup (nvm, etc.)
+# Source bashrc for shared setup
 if [ -f "$HOME/.bashrc" ]; then
   . "$HOME/.bashrc"
 fi
@@ -17,7 +17,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/martinczuchra/.lmstudio/bin"
-# End of LM Studio CLI section
