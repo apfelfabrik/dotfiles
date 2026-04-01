@@ -17,7 +17,10 @@ fi
 export LESS="$LESS -XRS"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
-export TERM=xterm-256color
+# Only override TERM outside of tmux/screen
+if [ -z "$TMUX" ] && [ -z "$STY" ]; then
+  export TERM=xterm-256color
+fi
 
 # Preferred editor
 if command -v nvim &> /dev/null; then
@@ -50,11 +53,27 @@ loadenv() {
   set +a
 }
 
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/martinczuchra/.lmstudio/bin"
-# End of LM Studio CLI section
+# LM Studio CLI (lms)
+export PATH="$PATH:$HOME/.lmstudio/bin"
 
 # Rust/Cargo
 . "$HOME/.cargo/env" 2>/dev/null
+
+# conda
+if [ -x /opt/homebrew/Caskroom/miniconda/base/bin/conda ]; then
+  __conda_shell="bash"
+  [ -n "$ZSH_VERSION" ] && __conda_shell="zsh"
+  __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' "shell.$__conda_shell" 'hook' 2> /dev/null)"
+  if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+  else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+      . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+      export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+  fi
+  unset __conda_setup __conda_shell
+fi
 
 alias docker=podman

@@ -19,9 +19,6 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
-# Added by LM Studio CLI (lms)
-export PATH="$PATH:/Users/martinczuchra/.lmstudio/bin"
-# End of LM Studio CLI section
-
+if [ -d "$HOME/.rvm/bin" ]; then
+    PATH="$PATH:$HOME/.rvm/bin"
+fi
