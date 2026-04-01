@@ -25,13 +25,7 @@ local servers = {
   terraformls = {},
   tflint = {},
 
-  lua_ls = {
-    Lua = {
-      diagnostics = { globals = { 'vim' } },
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false }
-    },
-  },
+  lua_ls = {},
 }
 
 require("lazy").setup({
@@ -79,14 +73,13 @@ require("lazy").setup({
     },
     config = function()
       local lspconfig = require('lspconfig')
-      local mason_lspconfig = require('mason-lspconfig')
 
-      mason_lspconfig.setup_handlers({
-        function(server_name)
-          lspconfig[server_name].setup(servers[server_name])
-        end,
-      })
+      -- Configure each server using the new vim.lsp.config() API (v2)
+      for server_name, config in pairs(servers) do
+        vim.lsp.config(server_name, config)
+      end
 
+      -- Configure gdscript separately (not managed by mason)
       lspconfig.gdscript.setup{
         on_attach = on_attach,
         flags = {

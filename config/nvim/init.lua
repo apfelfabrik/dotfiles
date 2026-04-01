@@ -63,3 +63,19 @@ keymap.set("n", ";", ":")
 -- opt.cursorline = true
 -- opt.iskeyword:append("-")
 
+-- Diagnostics Configuration
+vim.diagnostic.config({
+  virtual_text = true,      -- Show inline diagnostic messages
+  signs = true,             -- Show signs in the sign column
+  underline = true,         -- Underline diagnostic text
+  update_in_insert = false, -- Don't update diagnostics while typing
+  severity_sort = true,     -- Sort by severity
+  float = {
+    border = "rounded",
+    source = "always",
+  }
+})
+
+-- Keymap to manually open diagnostics
+keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic" })
+
