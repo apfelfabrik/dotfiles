@@ -1,9 +1,9 @@
 [submodule "vim/bundle/nerdtree"]
 	path = vim/pack/default/start/nerdtree
-	url = git://github.com/scrooloose/nerdtree.git
+	url = https://github.com/scrooloose/nerdtree.git
 [submodule "vim/bundle/fugitive"]
 	path = vim/pack/default/start/fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+	url = https://github.com/tpope/vim-fugitive.git
 [submodule "vim/bundle/tabular"]
 	path = vim/pack/default/start/tabular
 	url = https://github.com/godlygeek/tabular.git
@@ -36,7 +36,7 @@
 	url = https://github.com/editorconfig/editorconfig-vim.git
 [submodule "vim/bundle/vim-csharp"]
 	path = vim/pack/default/start/vim-csharp
-	url = git://github.com/OrangeT/vim-csharp.git
+	url = https://github.com/OrangeT/vim-csharp.git
 [submodule "Resources/Smyck-Color-Scheme"]
 	path = Resources/Smyck-Color-Scheme
 	url = https://github.com/hukl/Smyck-Color-Scheme.git
