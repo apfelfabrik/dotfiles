@@ -1,6 +1,6 @@
-.DS\_Store
+.DS_Store
 
-*.sw[p|o|n|m]
+*.sw[ponm]
 ~$*
 
 .ruby-gemset
