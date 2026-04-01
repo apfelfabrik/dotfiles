@@ -1,14 +1,6 @@
 # zmodload zsh/zprof
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
-if [ -e "$ZSH" ]; then
-  plugins=(git ruby)
-  source $ZSH/oh-my-zsh.sh
-else
-  echo "Did not find oh-my-zsh, make sure it's available."
-fi
+autoload -Uz compinit && compinit
 
 # Disables globbing, e.g. w/ ^ in HEAD^
 unsetopt nomatch
