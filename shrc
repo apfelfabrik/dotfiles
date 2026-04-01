@@ -14,7 +14,7 @@ if [ -s "$NVM_DIR/nvm.sh" ]; then
   npx()  { _load_nvm; npx  "$@"; }
 fi
 
-export LESS="$LESS -XS"
+export LESS="$LESS -XRS"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export TERM=xterm-256color
