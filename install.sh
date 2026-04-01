@@ -17,7 +17,29 @@ contained () {
 }
 
 mkdir -p ~/.config
-for file in ./* ./config/* ; do
+
+# Symlink XDG config dirs (config/*) into ~/.config/
+for file in ./config/* ; do
+  [ -e "$file" ] || continue
+  name=$(basename "$file")
+  dotfile=~/.config/"$name"
+  target="$(pwd)/config/$name"
+
+  if [ -e "$dotfile" ]; then
+    read -rp "$dotfile already exists. Replace? [y/N]" -n1
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+      rm -rf "$dotfile"
+    else
+      continue
+    fi
+  fi
+
+  ln -isvw "$target" "$dotfile"
+done
+
+# Symlink root-level dotfiles into ~/
+for file in ./* ; do
   basename=${file#./}
 
   if [ -e "$file" ] && ! contained "$basename" "${exceptions[@]}"; then
