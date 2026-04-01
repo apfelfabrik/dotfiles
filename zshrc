@@ -20,7 +20,9 @@ HISTSIZE=340000
 SAVEHIST=340000
 HISTFILE=~/.zsh_shared_history
 
-eval "$(starship init zsh)"
+if command -v starship &> /dev/null; then
+  eval "$(starship init zsh)"
+fi
 
 # enable rupa/z
 if command -v brew &> /dev/null; then

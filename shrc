@@ -54,4 +54,7 @@ loadenv() {
 export PATH="$PATH:/Users/martinczuchra/.lmstudio/bin"
 # End of LM Studio CLI section
 
+# Rust/Cargo
+. "$HOME/.cargo/env" 2>/dev/null
+
 alias docker=podman
