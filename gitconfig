@@ -31,6 +31,12 @@
   whitespace = nowarn
 [http]
   postBuffer = 157286400 # 150M.
+[transfer]
+  fsckObjects = true
+[fetch]
+  fsckObjects = true
+[receive]
+  fsckObjects = true
 [branch]
   autosetuprebase = always
 [rebase]
