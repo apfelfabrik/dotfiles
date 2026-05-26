@@ -2,6 +2,16 @@
 
 autoload -Uz compinit && compinit
 
+# Completion menu with highlighting
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# Partial/substring word completion (e.g. `cd dbt<tab>` matches `ds-dbt`)
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+# Emacs keybindings (previously provided by oh-my-zsh)
+bindkey -e
+
 # Disables globbing, e.g. w/ ^ in HEAD^
 unsetopt nomatch
 
