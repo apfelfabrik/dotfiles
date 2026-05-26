@@ -71,4 +71,14 @@ if [ -x /opt/homebrew/Caskroom/miniconda/base/bin/conda ]; then
   unset __conda_setup __conda_shell
 fi
 
+# Colors
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias ls='ls --color=auto'
+alias ll='ls -lh'
+alias la='ls -lAh'
+alias diff='diff --color=auto'
+
+alias xargs='xargs -o'
 alias docker=podman
