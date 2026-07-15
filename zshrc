@@ -12,6 +12,9 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 # Emacs keybindings (previously provided by oh-my-zsh)
 bindkey -e
 
+# ^[[Z is shift-tab
+bindkey '^[[Z' reverse-menu-complete
+
 # Disables globbing, e.g. w/ ^ in HEAD^
 unsetopt nomatch
 
@@ -56,3 +59,4 @@ if [ -f '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/home
 
 # Shared shell configuration (nvm, editor, PATH, aliases, etc.)
 . ~/.shrc
+export PATH="$HOME/.local/bin:$PATH"
