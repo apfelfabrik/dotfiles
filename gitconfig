@@ -19,7 +19,10 @@
   pr = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
   pr-clean = "!git branch --list 'pr/*' --format='%(refname:short)' | xargs -r git branch -D"
 [push]
-  default = upstream
+  default = simple
+  autoSetupRemote = true
+[branch]
+  autoSetupMerge = simple
 [pull]
   rebase = false
 [apply]
