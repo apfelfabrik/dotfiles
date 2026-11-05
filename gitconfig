@@ -4,13 +4,8 @@
   useconfigonly = true
 [includeIf "gitdir:~/Development/bitcrowd/"]
   path = ~/Development/bitcrowd/.gitconfig
-[github]
-  user = apfelfabrik
-[color]
-  ui = true
 [core]
   excludesfile = ~/.gitignore
-  compression = -1
   pager = less -RS
 [alias]
   browse = log --graph --pretty=format:'%Cred%h%Creset %Cblue(%aN)%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr, %aD)%Creset' --abbrev-commit --date=short
@@ -22,7 +17,7 @@
   c = commit -v
   b = branch
   pr = "!f() { git fetch -fu ${2:-origin} refs/pull/$1/head:pr/$1 && git checkout pr/$1; }; f"
-  pr-clean = "!git for-each-ref refs/heads/pr/* --format=\"%(refname)\" | while read ref ; do branch=${ref#refs/heads/} ; git branch -D $branch ; done"
+  pr-clean = "!git branch --list 'pr/*' --format='%(refname:short)' | xargs -r git branch -D"
 [push]
   default = upstream
 [pull]
@@ -37,11 +32,10 @@
   fsckObjects = true
 [receive]
   fsckObjects = true
-[branch]
-  autosetuprebase = always
 [rebase]
   instructionFormat = (%aN) - %s (%cr, %aD)
-  reverseOrder = true
+[rerere]
+  enabled = true
 [init]
   defaultBranch = main
 [url "ssh://git@github.com/"]
