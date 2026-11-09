@@ -14,7 +14,7 @@ if [ -s "$NVM_DIR/nvm.sh" ]; then
   npx()  { nvm_lazy_load; npx  "$@"; }
 fi
 
-export LESS="$LESS -XRS"
+export LESS=-XRS
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 # Only override TERM outside of tmux/screen
@@ -25,9 +25,8 @@ fi
 # Preferred editor
 if command -v nvim &> /dev/null; then
   alias vim="nvim"
-fi
-
-if command -v vim &> /dev/null; then
+  export EDITOR='nvim'
+elif command -v vim &> /dev/null; then
   export EDITOR='vim'
 else
   >&2 echo "Cannot find vim in PATH, EDITOR is '$EDITOR'"
