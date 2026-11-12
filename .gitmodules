@@ -24,10 +24,10 @@
 	url = https://github.com/kien/ctrlp.vim.git
 [submodule "vim/bundle/vim-jsx"]
 	path = vim/pack/default/start/vim-jsx
-	url = git@github.com:mxw/vim-jsx.git
+	url = https://github.com/mxw/vim-jsx.git
 [submodule "vim/bundle/vim-javascript"]
 	path = vim/pack/default/start/vim-javascript
-	url = git@github.com:pangloss/vim-javascript.git
+	url = https://github.com/pangloss/vim-javascript.git
 [submodule "vim/bundle/typescript-vim"]
 	path = vim/pack/default/start/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
@@ -56,6 +56,3 @@
 [submodule "tmux/plugins/tpm"]
 	path = tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
-[submodule "Resources/nerd-fonts"]
-	path = Resources/nerd-fonts
-	url = https://github.com/ryanoasis/nerd-fonts.git

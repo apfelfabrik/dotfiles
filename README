@@ -1,2 +1,7 @@
-My dotfiles. Symlink where appropriate, make sure to create a .secret with all
-environment settings that aren't public.
+My dotfiles. ./install.sh symlinks every tracked top-level file to ~/.<name>
+and every tracked config/<dir> to ~/.config/<dir>; untracked files are left
+alone. Create ~/.secrets with the environment settings that aren't public, it
+is sourced by shrc.
+
+zsh and bash are both configured; everything they share lives in shrc.
+`brew bundle` installs the tools and the font the configs refer to.

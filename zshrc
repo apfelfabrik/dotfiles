@@ -19,15 +19,12 @@ bindkey '^[[Z' reverse-menu-complete
 unsetopt nomatch
 
 setopt SHARE_HISTORY
-setopt APPEND_HISTORY
-setopt INC_APPEND_HISTORY
 
 setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_SPACE
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
-setopt HIST_BEEP
 
 HISTSIZE=340000
 SAVEHIST=340000
@@ -38,11 +35,9 @@ if command -v starship &> /dev/null; then
 fi
 
 # enable rupa/z
-if command -v brew &> /dev/null; then
-  Z_PATH="$(brew --prefix)/etc/profile.d/z.sh"
-  if [[ -f "$Z_PATH" ]]; then
-    source "$Z_PATH"
-  fi
+Z_PATH="${HOMEBREW_PREFIX:-/opt/homebrew}/etc/profile.d/z.sh"
+if [[ -f "$Z_PATH" ]]; then
+  source "$Z_PATH"
 fi
 
 # directory specific .envrc files
@@ -51,12 +46,11 @@ if type "direnv" &> /dev/null; then
   eval "$(direnv hook zsh)"
 fi
 
-# # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'; fi
-
-# # The next line enables shell command completion for gcloud.
+# Google Cloud SDK: PATH, then command completion
 if [ -f '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc' ]; then . '/opt/homebrew/share/google-cloud-sdk/completion.zsh.inc'; fi
 
 # Shared shell configuration (nvm, editor, PATH, aliases, etc.)
 . ~/.shrc
 export PATH="$HOME/.local/bin:$PATH"
+typeset -U path fpath

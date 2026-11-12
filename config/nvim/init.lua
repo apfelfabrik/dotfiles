@@ -30,6 +30,31 @@ keymap.set("n", "<leader>l", ":set list!<CR>")
 -- Search
 opt.ignorecase = true
 opt.smartcase = true
+keymap.set("n", "<leader>h", ":nohlsearch<CR>")
+
+-- Undo
+opt.undofile = true
+
+-- Whitespace & indentation, keeping the view
+local function preserve(cmd)
+  local view = vim.fn.winsaveview()
+  vim.cmd(cmd)
+  vim.fn.winrestview(view)
+end
+
+local function strip_trailing_whitespace()
+  preserve([[keeppatterns %s/\s\+$//e]])
+end
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = vim.api.nvim_create_augroup("strip_trailing_whitespace", { clear = true }),
+  callback = strip_trailing_whitespace,
+})
+keymap.set("n", "<leader>$", strip_trailing_whitespace)
+keymap.set("n", "<leader>=", function() preserve("keepjumps normal! gg=G") end)
+
+-- %% expands to the directory of the current file in command mode
+keymap.set("c", "%%", function() return vim.fn.expand("%:h") .. "/" end, { expr = true })
 
 -- Colors
 

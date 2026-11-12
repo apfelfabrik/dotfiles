@@ -14,7 +14,7 @@ if [ -s "$NVM_DIR/nvm.sh" ]; then
   npx()  { nvm_lazy_load; npx  "$@"; }
 fi
 
-export LESS="$LESS -XRS"
+export LESS=-XRS
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 # Only override TERM outside of tmux/screen
@@ -25,9 +25,8 @@ fi
 # Preferred editor
 if command -v nvim &> /dev/null; then
   alias vim="nvim"
-fi
-
-if command -v vim &> /dev/null; then
+  export EDITOR='nvim'
+elif command -v vim &> /dev/null; then
   export EDITOR='vim'
 else
   >&2 echo "Cannot find vim in PATH, EDITOR is '$EDITOR'"
@@ -54,21 +53,22 @@ export PATH="$PATH:$HOME/.lmstudio/bin"
 # Rust/Cargo
 . "$HOME/.cargo/env" 2>/dev/null
 
-# conda
+# conda (lazy loaded — stub replaces itself on first use)
 if [ -x /opt/homebrew/Caskroom/miniconda/base/bin/conda ]; then
-  __conda_shell="bash"
-  [ -n "$ZSH_VERSION" ] && __conda_shell="zsh"
-  __conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' "shell.$__conda_shell" 'hook' 2> /dev/null)"
-  if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-  else
-    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+  conda() {
+    unset -f conda
+    local shell="bash"
+    [ -n "$ZSH_VERSION" ] && shell="zsh"
+    local setup
+    if setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' "shell.$shell" 'hook' 2> /dev/null)"; then
+      eval "$setup"
+    elif [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
       . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
     else
       export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
     fi
-  fi
-  unset __conda_setup __conda_shell
+    conda "$@"
+  }
 fi
 
 # Colors
